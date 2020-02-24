@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://newoapp-23.herokuapp.com/api'
+  apiUrl: 'http://localhost:9090/api'
 };
 
 /*

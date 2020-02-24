@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://newoapp-23.herokuapp.com/api'
+  apiUrl: 'http://localhost:9090/api'
 };
