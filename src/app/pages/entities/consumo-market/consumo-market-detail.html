@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Consumo Market
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Total Consumido</ion-label>
+            <div item-content>
+                <span>{{consumoMarket.totalConsumido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Registro Fecha Inicial</ion-label>
+            <div item-content>
+                <span>{{consumoMarket.registroFechaInicial | date:'mediumDate'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Registro Fecha Final</ion-label>
+            <div item-content>
+                <span>{{consumoMarket.registroFechaFinal | date:'mediumDate'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{consumoMarket.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>User</ion-label>
+            <div item-content>{{consumoMarket.user?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(consumoMarket)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(consumoMarket)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

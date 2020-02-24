@@ -1,0 +1,92 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Espacio Libres
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let espacioLibre of espacioLibres; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(espacioLibre)">
+              <ion-label text-wrap>
+                <p>{{espacioLibre.nombre}}</p>
+                <p>{{espacioLibre.capacidadInstalada}}</p>
+                <p>{{espacioLibre.wifi}}</p>
+                <p>{{espacioLibre.tarifa1hMiembro}}</p>
+                <p>{{espacioLibre.tarifa2hMiembro}}</p>
+                <p>{{espacioLibre.tarifa3hMiembro}}</p>
+                <p>{{espacioLibre.tarifa4hMiembro}}</p>
+                <p>{{espacioLibre.tarifa5hMiembro}}</p>
+                <p>{{espacioLibre.tarifa6hMiembro}}</p>
+                <p>{{espacioLibre.tarifa7hMiembro}}</p>
+                <p>{{espacioLibre.tarifa8hMiembro}}</p>
+                <p>{{espacioLibre.tarifa1hInvitado}}</p>
+                <p>{{espacioLibre.tarifa2hInvitado}}</p>
+                <p>{{espacioLibre.tarifa3hInvitado}}</p>
+                <p>{{espacioLibre.tarifa4hInvitado}}</p>
+                <p>{{espacioLibre.tarifa5hInvitado}}</p>
+                <p>{{espacioLibre.tarifa6hInvitado}}</p>
+                <p>{{espacioLibre.tarifa7hInvitado}}</p>
+                <p>{{espacioLibre.tarifa8hInvitado}}</p>
+                <!-- todo: special handling for translating enum - {{'Impuestod.' + espacioLibre.impuesto}}" -->
+                <p>{{espacioLibre.impuesto}}</p>
+                <p>{{espacioLibre.video}}</p>
+                <ion-avatar *ngIf="espacioLibre.imagen1">
+                    <img [src]="'data:' + espacioLibre.imagen1ContentType + ';base64,' + espacioLibre.imagen1" />
+                    <p *ngIf="espacioLibre.imagen1">{{espacioLibre.imagen1ContentType}}, {{byteSize(espacioLibre.imagen1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espacioLibre.imagen2">
+                    <img [src]="'data:' + espacioLibre.imagen2ContentType + ';base64,' + espacioLibre.imagen2" />
+                    <p *ngIf="espacioLibre.imagen2">{{espacioLibre.imagen2ContentType}}, {{byteSize(espacioLibre.imagen2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espacioLibre.imagen3">
+                    <img [src]="'data:' + espacioLibre.imagen3ContentType + ';base64,' + espacioLibre.imagen3" />
+                    <p *ngIf="espacioLibre.imagen3">{{espacioLibre.imagen3ContentType}}, {{byteSize(espacioLibre.imagen3)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espacioLibre.imagen4">
+                    <img [src]="'data:' + espacioLibre.imagen4ContentType + ';base64,' + espacioLibre.imagen4" />
+                    <p *ngIf="espacioLibre.imagen4">{{espacioLibre.imagen4ContentType}}, {{byteSize(espacioLibre.imagen4)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espacioLibre.imagen5">
+                    <img [src]="'data:' + espacioLibre.imagen5ContentType + ';base64,' + espacioLibre.imagen5" />
+                    <p *ngIf="espacioLibre.imagen5">{{espacioLibre.imagen5ContentType}}, {{byteSize(espacioLibre.imagen5)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espacioLibre.imagen6">
+                    <img [src]="'data:' + espacioLibre.imagen6ContentType + ';base64,' + espacioLibre.imagen6" />
+                    <p *ngIf="espacioLibre.imagen6">{{espacioLibre.imagen6ContentType}}, {{byteSize(espacioLibre.imagen6)}}</p>
+                </ion-avatar>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, espacioLibre)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(espacioLibre)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!espacioLibres?.length">
+        <ion-label>
+            No Espacio Libres found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

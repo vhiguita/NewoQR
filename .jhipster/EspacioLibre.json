@@ -1,0 +1,152 @@
+{
+    "name": "EspacioLibre",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "capacidadInstalada",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "wifi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tarifa1hMiembro",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa2hMiembro",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa3hMiembro",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa4hMiembro",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa5hMiembro",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa6hMiembro",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa7hMiembro",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa8hMiembro",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa1hInvitado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa2hInvitado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa3hInvitado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa4hInvitado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa5hInvitado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa6hInvitado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa7hInvitado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa8hInvitado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "impuesto",
+            "fieldType": "Impuestod",
+            "fieldValues": "IVA19,IVA6,IVA0,ICO,IPOCONSUMO8"
+        },
+        {
+            "fieldName": "video",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imagen1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen3",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen4",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen5",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen6",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "sedes",
+            "otherEntityRelationshipName": "espacioLibre",
+            "relationshipName": "sede",
+            "otherEntityField": "nombreSede"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoEspacio",
+            "otherEntityRelationshipName": "espacioLibre",
+            "relationshipName": "tipoEspacio",
+            "otherEntityField": "tipoEspacio"
+        }
+    ],
+    "changelogDate": "20191022215048",
+    "entityTableName": "espacio_libre",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

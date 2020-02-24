@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Landings
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let landing of landings; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(landing)">
+              <ion-label text-wrap>
+                <p>{{landing.nombre}}</p>
+                <p>{{landing.descripcion}}</p>
+                <p>{{landing.facilidades}}</p>
+                <p>{{landing.telefonoNegocio}}</p>
+                <p>{{landing.numeroPuestos}}</p>
+                <p>{{landing.tarifaMensual}}</p>
+                <!-- todo: special handling for translating enum - {{'Impuestod.' + landing.impuesto}}" -->
+                <p>{{landing.impuesto}}</p>
+                <ion-avatar *ngIf="landing.imagen1">
+                    <img [src]="'data:' + landing.imagen1ContentType + ';base64,' + landing.imagen1" />
+                    <p *ngIf="landing.imagen1">{{landing.imagen1ContentType}}, {{byteSize(landing.imagen1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="landing.imagen2">
+                    <img [src]="'data:' + landing.imagen2ContentType + ';base64,' + landing.imagen2" />
+                    <p *ngIf="landing.imagen2">{{landing.imagen2ContentType}}, {{byteSize(landing.imagen2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="landing.imagen3">
+                    <img [src]="'data:' + landing.imagen3ContentType + ';base64,' + landing.imagen3" />
+                    <p *ngIf="landing.imagen3">{{landing.imagen3ContentType}}, {{byteSize(landing.imagen3)}}</p>
+                </ion-avatar>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, landing)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(landing)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!landings?.length">
+        <ion-label>
+            No Landings found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

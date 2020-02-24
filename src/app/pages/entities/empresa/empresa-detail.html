@@ -1,0 +1,140 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Empresa
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Razon Social</ion-label>
+            <div item-content>
+                <span>{{empresa.razonSocial}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Nit</ion-label>
+            <div item-content>
+                <span>{{empresa.nit}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Direccion</ion-label>
+            <div item-content>
+                <span>{{empresa.direccion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Telefono</ion-label>
+            <div item-content>
+                <span>{{empresa.telefono}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Correo</ion-label>
+            <div item-content>
+                <span>{{empresa.correo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Web</ion-label>
+            <div item-content>
+                <span>{{empresa.web}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Celular</ion-label>
+            <div item-content>
+                <span>{{empresa.celular}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Biografia</ion-label>
+            <div item-content>
+                <span>{{empresa.biografia}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="empresa.imagen1">
+                    <a (click)="openFile(empresa.imagen1ContentType, empresa.imagen1)">
+                        <img [src]="'data:' + empresa.imagen1ContentType + ';base64,' + empresa.imagen1" style="max-width: 100%;" alt="empresa image"/>
+                    </a>
+                    {{empresa.imagen1ContentType}}, {{byteSize(empresa.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="empresa.imagen2">
+                    <a (click)="openFile(empresa.imagen2ContentType, empresa.imagen2)">
+                        <img [src]="'data:' + empresa.imagen2ContentType + ';base64,' + empresa.imagen2" style="max-width: 100%;" alt="empresa image"/>
+                    </a>
+                    {{empresa.imagen2ContentType}}, {{byteSize(empresa.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 3</ion-label>
+            <div item-content>
+                <div *ngIf="empresa.imagen3">
+                    <a (click)="openFile(empresa.imagen3ContentType, empresa.imagen3)">
+                        <img [src]="'data:' + empresa.imagen3ContentType + ';base64,' + empresa.imagen3" style="max-width: 100%;" alt="empresa image"/>
+                    </a>
+                    {{empresa.imagen3ContentType}}, {{byteSize(empresa.imagen3)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Facebook</ion-label>
+            <div item-content>
+                <span>{{empresa.facebook}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Instagram</ion-label>
+            <div item-content>
+                <span>{{empresa.instagram}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Id Google</ion-label>
+            <div item-content>
+                <span>{{empresa.idGoogle}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Twiter</ion-label>
+            <div item-content>
+                <span>{{empresa.twiter}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Conocimientos Que Domina</ion-label>
+            <div item-content>
+                <span>{{empresa.conocimientosQueDomina}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Temas De Interes</ion-label>
+            <div item-content>
+                <span>{{empresa.temasDeInteres}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Miembro</ion-label>
+            <div item-content>{{empresa.miembro?.login}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(empresa)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(empresa)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

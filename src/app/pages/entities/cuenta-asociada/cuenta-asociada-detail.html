@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Cuenta Asociada
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Identificaciontitular</ion-label>
+            <div item-content>
+                <span>{{cuentaAsociada.identificaciontitular}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Nombre Titular</ion-label>
+            <div item-content>
+                <span>{{cuentaAsociada.nombreTitular}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Apellido Titular</ion-label>
+            <div item-content>
+                <span>{{cuentaAsociada.apellidoTitular}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Numero Cuenta</ion-label>
+            <div item-content>
+                <span>{{cuentaAsociada.numeroCuenta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Cuenta</ion-label>
+            <div item-content>
+                <span>{{cuentaAsociada.tipoCuenta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Codigo Seguridad</ion-label>
+            <div item-content>
+                <span>{{cuentaAsociada.codigoSeguridad}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha Vencimiento</ion-label>
+            <div item-content>
+                <span>{{cuentaAsociada.fechaVencimiento | date:'mediumDate'}}</span>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(cuentaAsociada)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(cuentaAsociada)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

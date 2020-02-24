@@ -1,0 +1,43 @@
+{
+    "name": "RegistroFacturacion",
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fechaRegistro",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaFacturacion",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoRegistroCompra",
+            "otherEntityRelationshipName": "registroFacturacion",
+            "relationshipName": "tipoRegistro",
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "registroFacturacion",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191022215056",
+    "entityTableName": "registro_facturacion",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

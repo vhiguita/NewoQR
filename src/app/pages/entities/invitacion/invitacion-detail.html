@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Invitacion
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Fecha Inicio</ion-label>
+            <div item-content>
+                <span>{{invitacion.fechaInicio | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha Fin</ion-label>
+            <div item-content>
+                <span>{{invitacion.fechaFin | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Sede</ion-label>
+            <div item-content *ngIf="invitacion.sede">
+                <a>{{invitacion.sede?.nombreSede}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Invitado</ion-label>
+            <div item-content *ngIf="invitacion.invitado">
+                <a>{{invitacion.invitado?.identificacion}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(invitacion)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(invitacion)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

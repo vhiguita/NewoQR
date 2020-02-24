@@ -1,0 +1,613 @@
+entity Miembros {
+		idUser Integer required,
+		nombre String required,
+    apellido String required,
+    login String required,
+    tipoDocumento TipoDocumentod required,
+    identificacion Integer required,
+    fechaNacimiento LocalDate required,
+    fechaRegistro Instant,
+    genero Generod required,
+    celular String required maxlength(13) minlength(11),
+    biografia TextBlob required,
+    foto1 ImageBlob required,
+    foto2 ImageBlob,
+    foto3 ImageBlob,
+    conocimientosQueDomina String required,
+    temasDeInteres String required,
+    facebook String,
+    instagram String,
+    idGoogle String,
+    twiter String,
+    derechosDeCompra Boolean,
+    accesoIlimitado Boolean
+    aliado Boolean,
+    host Boolean
+}
+
+enum TipoDocumentod {
+	Cedula, Cedula_Extranjeria, Pasaporte, Otro
+}
+
+
+entity EntradaMiembros {
+	registroFecha Instant,
+    salida Boolean,
+    tiempoMaximo Boolean,
+}
+
+entity Invitados {
+	nombre String required minlength(3) maxlength(25),
+    apellido String required minlength(3) maxlength(25),
+    tipoDocumento TipoDocumentod required,
+    identificacion String required minlength(6) maxlength(12),
+    correo String required,
+    telefono String minlength(7) maxlength(12),
+}
+
+entity Invitacion {
+	fechaInicio ZonedDateTime,
+    fechaFin ZonedDateTime,
+}
+
+entity EntradaInvitados {
+    registroFecha Instant,
+		salida Boolean,
+    tiempoMaximo Boolean
+}
+
+entity Sedes {
+		nombreSede String required,
+    coordenadaX Double,
+    coordenadaY Double,
+    direccion String required,
+    telefonoComunidad String required maxlength(12) minlength(7),
+    telefonoNegocio String maxlength(12) minlength(7),
+    descripcionSede TextBlob,
+    horario String,
+    video String,
+    imagen1 ImageBlob,
+    imagen2 ImageBlob,
+    imagen3 ImageBlob,
+    imagen4 ImageBlob,
+    imagen5 ImageBlob,
+    imagen6 ImageBlob,
+}
+
+entity EspacioLibre {
+	nombre String required,
+    capacidadInstalada Integer required,
+    wifi String,
+    tarifa1hMiembro Integer,
+    tarifa2hMiembro Integer,
+    tarifa3hMiembro Integer,
+    tarifa4hMiembro Integer,
+    tarifa5hMiembro Integer,
+    tarifa6hMiembro Integer,
+    tarifa7hMiembro Integer,
+    tarifa8hMiembro Integer,
+    tarifa1hInvitado Integer,
+    tarifa2hInvitado Integer,
+    tarifa3hInvitado Integer,
+    tarifa4hInvitado Integer,
+    tarifa5hInvitado Integer,
+    tarifa6hInvitado Integer,
+    tarifa7hInvitado Integer,
+    tarifa8hInvitado Integer,
+    impuesto Impuestod,
+    video String,
+    imagen1 ImageBlob,
+    imagen2 ImageBlob,
+    imagen3 ImageBlob,
+    imagen4 ImageBlob,
+    imagen5 ImageBlob,
+    imagen6 ImageBlob,
+}
+
+entity TipoEspacio {
+	tipoEspacio String  required,
+}
+
+entity HostSede {
+
+}
+
+entity Reservas {
+	registroFechaEntrada ZonedDateTime required,
+    registroFechaSalida ZonedDateTime required,
+    estadoReserva EstadoReservad,
+    titulo String,
+    descripcion String
+}
+
+enum EstadoReservad {
+	Cancelada, Activa, Reservada, Ocupada, Extendida, Cerrada
+}
+
+entity EspaciosReserva {
+		nombre String required,
+    descripcion String required,
+    facilidades String required,
+    capacidad Integer required,
+    apertura String maxlength(5) required,
+    cierre String maxlength(5) required,
+    wifi String,
+    video String,
+    imagen1 ImageBlob,
+    imagen2 ImageBlob,
+    imagen3 ImageBlob,
+    imagen4 ImageBlob,
+    imagen5 ImageBlob,
+    imagen6 ImageBlob,
+    tarifa1Hora Integer,
+    tarifa2Hora Integer,
+    tarifa3Hora Integer,
+    tarifa4Hora Integer,
+    tarifa5Hora Integer,
+    tarifa6Hora Integer,
+    tarifa7Hora Integer,
+    tarifa8Hora Integer,
+    impuesto Impuestod
+  }
+
+
+entity RegistroCompra {
+    Valor Integer,
+    fechaRegistro Instant,
+    idTransaccion Integer,
+}
+
+entity TipoRegistroCompra {
+	descripcion String,
+}
+
+entity Facturacion {
+		titularFactura String,
+    tipoPersona TipoPersonad,
+    periodicidadFacturacion PeriodicidadFacturaciond,
+    maximoMonto Integer,
+    Valor Integer
+}
+
+entity RegistroFacturacion {
+		Valor Integer,
+    fechaRegistro Instant,
+    fechaFacturacion LocalDate
+}
+
+entity EquipoEmpresas {
+		nombre String required,
+    telefono String,
+    correo String,
+    direccion String,
+    descripcion TextBlob,
+    logo ImageBlob,
+    paginaWeb String,
+    conocimientosQueDomina String required,
+    temasDeInteres String required,
+}
+
+entity MiembrosEquipoEmpresas{
+
+}
+entity CuentaAsociada {
+	identificaciontitular String required,
+    nombreTitular String required,
+    apellidoTitular String required,
+    numeroCuenta String required,
+    tipoCuenta String required,
+    codigoSeguridad String required,
+    fechaVencimiento LocalDate required
+}
+
+entity Beneficio {
+	tipoBeneficio Beneficiosd required,
+    descuento Integer required
+}
+
+entity Empresa {
+	razonSocial String required,
+    nit String required maxlength(13) minlength(9),
+    direccion String,
+    telefono String,
+    correo String,
+    web String,
+    celular String,
+    biografia TextBlob required,
+    imagen1 ImageBlob,
+    imagen2 ImageBlob,
+    imagen3 ImageBlob,
+    facebook String,
+    instagram String,
+    idGoogle String,
+    twiter String,
+    conocimientosQueDomina String required,
+    temasDeInteres String required
+}
+entity Landing {
+	nombre String required,
+    descripcion String required,
+    facilidades String required,
+    telefonoNegocio String,
+    numeroPuestos Integer required,
+    tarifaMensual Integer required,
+    impuesto Impuestod  required
+    imagen1 ImageBlob,
+    imagen2 ImageBlob,
+    imagen3 ImageBlob
+}
+
+entity ProductosServicios {
+	nombreProducto String required,
+    descripcion String required,
+    inventariables Boolean,
+    valor Integer required,
+    impuesto Impuestod required
+    video String,
+    imagen1 ImageBlob,
+    imagen2 ImageBlob,
+    imagen3 ImageBlob,
+    imagen4 ImageBlob,
+    imagen5 ImageBlob,
+    imagen6 ImageBlob,
+    web String
+}
+
+
+entity Pais {
+ 	nombrePais String required
+}
+
+entity Ciudad {
+	nombreCiudad String required
+}
+
+entity Blog {
+		titulo String required,
+    descripcion String required,
+		tipoContenido Categoriad,
+    contenido TextBlob required,
+    fecha Instant,
+    audio AnyBlob,
+    video String,
+    imagen1 ImageBlob required,
+    imagen2 ImageBlob,
+    banner ImageBlob,
+    estadoPublicacion EstadoPublicaciond,
+    tipoConsumo TipoConsumod,
+    valor Float,
+    impuesto Impuestod,
+    vistas Integer,
+    meGusta Integer,
+    seguidores Integer
+
+}
+
+entity VideoBlog {
+		titulo String required,
+    descripcion String required,
+		tipoContenido Categoriad,
+    contenido TextBlob required,
+    fecha Instant,
+    video String,
+    estadoPublicacion EstadoPublicaciond,
+    tipoConsumo TipoConsumod,
+    valor Float,
+    impuesto Impuestod,
+    vistas Integer,
+    meGusta Integer,
+    seguidores Integer
+
+}
+
+entity ComentarioBlog {
+		comentario TextBlob required,
+    fecha Instant,
+    meGusta Boolean,
+    seguir Boolean
+}
+
+entity ComentarioVideoBlog {
+		comentario TextBlob required,
+    fecha Instant,
+    meGusta Boolean,
+    seguir Boolean
+}
+
+entity Feed {
+		titulo String required,
+    descripcion String required,
+    imagen1 ImageBlob required,
+    imagen2 ImageBlob,
+		tipoContenido Categoriad,
+    contenido TextBlob required,
+    fecha Instant,
+    impuesto Impuestod,
+    vistas Integer,
+    meGusta Integer,
+    seguidores Integer
+}
+
+entity ComentarioFeed {
+		comentario TextBlob required,
+    fecha Instant,
+    meGusta Boolean,
+    seguir Boolean
+}
+
+entity Chat {
+		mensaje String required,
+    sender Integer,
+    read Boolean,
+    delivered Boolean,
+    sent Boolean,
+    fecha ZonedDateTime,
+
+}
+
+entity ChatsListado {
+    descripcion String,
+    estatus Estatusd,
+    count Integer,
+    badge Integer,
+    time String,
+    sendTime Instant,
+    grupo Boolean
+}
+
+enum Estatusd {
+	EnLinea, Desconectado
+}
+
+relationship ManyToOne {
+		ChatsListado{propietario(id)} to User,
+    ChatsListado {destinatario(id)} to User,
+    Chat to ChatsListado,
+    Chat{de(id)} to User,
+    Chat{para(id)} to User
+}
+
+entity Evento {
+	nombreEvento String required,
+    descripcion String required,
+    contenido TextBlob required,
+    audio AnyBlob,
+    video String,
+    imagen1 ImageBlob required,
+    imagen2 ImageBlob,
+    banner ImageBlob,
+    video AnyBlob,
+    tipoConsumo TipoConsumod,
+    valor Float,
+    impuesto Impuestod,
+    tipoEvento Categoriad,
+    eventoNEWO Boolean,
+    web String,
+    vistas Integer,
+    meGusta Integer,
+    seguidores Integer
+}
+
+entity CategoriaContenidos {
+	categoria String required,
+}
+
+relationship ManyToOne {
+		Blog {idUser(id)} to User,
+		Blog{categoriaBlog(categoria)} to CategoriaContenidos,
+    VideoBlog {idUser(id)} to User,
+		VideoBlog{categoriaBlog(categoria)} to CategoriaContenidos,
+    ComentarioBlog to Blog,
+    ComentarioBlog{idUser(id)} to User,
+    ComentarioVideoBlog to VideoBlog,
+    ComentarioVideoBlog{idUser(id)} to User,
+    Feed{idUser(id)} to User,
+    Feed{categoriaFeed(categoria)} to CategoriaContenidos,
+    ComentarioFeed to Feed,
+    ComentarioFeed{idUser(id)} to User,
+    Evento{categoriaEvento(categoria)} to CategoriaContenidos,
+		Evento {idUser(id)} to User,
+    Grupos{categoriaGrupo(categoria)} to CategoriaContenidos
+}
+entity Grupos {
+	nombreGrupo String required,
+    instagram String,
+    facebook String,
+    twiter String,
+    linkedIn String,
+    tipoGrupo TipoGrupod,
+    tipoConsumo TipoConsumod,
+    valorSuscripcion Integer,
+    impuesto Impuestod,
+    reglasGrupo TextBlob,
+    audio AnyBlob,
+    video AnyBlob,
+    imagen1 ImageBlob required,
+    imagen2 ImageBlob,
+    banner ImageBlob
+}
+
+entity MiembrosGrupo {
+
+}
+
+entity RecursosFisicos {
+	recurso String required,
+    tipo TipoRecursod required,
+    unidadMedida String required,
+    valorUnitario Integer required,
+    valor1H Integer,
+    valor2H Integer,
+    valor3H Integer,
+    valor4H Integer,
+    valor5H Integer,
+    valor6H Integer,
+    valor7H Integer,
+    valor8H Integer,
+    valor9H Integer,
+    valor10H Integer,
+    valor11H Integer,
+    valor12H Integer,
+    impuesto Impuestod,
+    foto ImageBlob required,
+    video AnyBlob,
+}
+
+entity UsoRecursoFisico {
+	registroFechaInicio Instant,
+    tipoRegistro TipoIniciod,
+
+}
+entity TipoRecurso {
+	nombre String required,
+	descripcion String required
+}
+
+
+entity ConsumoMarket {
+	totalConsumido Integer,
+    registroFechaInicial LocalDate,
+    registroFechaFinal LocalDate,
+    impuesto Impuestod
+}
+
+entity PrepagoConsumo {
+	aporte Integer,
+	saldoActual Integer,
+    fechaRegistro LocalDate,
+    fechaSaldoActual LocalDate
+}
+
+entity MargenNewoEventos {
+	porcentajeMargen Integer
+}
+
+entity MargenNewoGrupos {
+	porcentajeMargen Integer
+}
+
+entity MargenNewoBlog {
+	porcentajeMargen Integer
+}
+
+entity MargenNewoProductos {
+	porcentajeMargen Integer
+}
+
+entity TipoPrepagoConsumo {
+	nombre String required,
+    descripcion String required,
+    valorMinimo Integer required,
+    valorMaximo Integer required
+}
+
+relationship OneToOne {
+	Miembros to User,
+    MargenNewoEventos{evento(nombreEvento)} to Evento
+
+}
+
+
+
+relationship ManyToOne {
+    Miembros{nacionalidad(nombrePais)} to Pais,
+    Blog{Grupos(NombreGrupo)} to Grupos,
+    Evento{Grupos(NombreGrupo)} to Grupos,
+    MiembrosGrupo{miembro(login)} to User,
+    MiembrosGrupo{grupo(nombreGrupo)} to Grupos,
+    Invitados to User,
+    EquipoEmpresas{empresa(razonSocial)} to Empresa,
+    MiembrosEquipoEmpresas{equipo(nombre)} to EquipoEmpresas,
+		ConsumoMarket to User,
+    Reservas to User,
+    RegistroCompra to User,
+    RegistroFacturacion{tipoRegistro(descripcion)} to TipoRegistroCompra,
+    RegistroFacturacion to User,
+    RegistroCompra{tipoRegistro(descripcion)} to TipoRegistroCompra,
+    EntradaMiembros to User,
+    Beneficio to User,
+    Ciudad{pais(nombrePais)} to Pais,
+    EspacioLibre{sede(nombreSede)} to Sedes,
+    EspacioLibre{tipoEspacio(tipoEspacio)} to TipoEspacio
+    EspaciosReserva{sede(nombreSede)} to Sedes,
+    Landing{sede(nombreSede)} to Sedes,
+    HostSede{sede(nombreSede)} to Sedes,
+    HostSede{miembro(login)} to User,
+    RecursosFisicos{sede(nombreSede)} to Sedes,
+    Sedes{ciudad(nombreCiudad)} to Ciudad,
+    EntradaMiembros{sede(nombreSede)} to Sedes,
+		EntradaInvitados{sede(nombreSede)} to Sedes,
+    Invitacion{sede(nombreSede)} to Sedes,
+    Invitacion{invitado(identificacion)} to Invitados,
+    Reservas{Espacio(nombre)} to EspaciosReserva,
+    RecursosFisicos{tipoRecurso(nombre)} to TipoRecurso,
+    UsoRecursoFisico{recurso(recurso)} to RecursosFisicos,
+    UsoRecursoFisico to User,
+    Facturacion{empresa(razonSocial)} to Empresa,
+    EntradaInvitados{invitado(identificacion)} to Invitados,
+    MargenNewoBlog{blog(descripcion)} to Blog,
+    MargenNewoGrupos{grupo(nombreGrupo)} to Grupos,
+    MargenNewoProductos{producto(nombreProducto)} to ProductosServicios,
+    MiembrosEquipoEmpresas{miembro(login)} to User,
+    Empresa{miembro(login)} to User,
+    PrepagoConsumo{miembro(login)} to User,
+    TipoPrepagoConsumo{tipoBeneficio(tipoBeneficio)} to Beneficio,
+    PrepagoConsumo{tipoPrepago(nombre)} to TipoPrepagoConsumo,
+    Facturacion{identificacion(identificaciontitular)} to CuentaAsociada,
+    ProductosServicios to User
+}
+
+filter *
+paginate * with infinite-scroll
+
+
+enum TipoIngresod {
+    Espacio_Libre, Reserva, Oficina
+ }
+enum TipoEntradad {
+    INGRESO, SALIDA
+}
+enum TipoGrupod {
+    INTERNO, EXTERNO, PATROCINADO, PUBLICO
+}
+enum TipoConsumod {
+    GRATIS, PAGO
+}
+
+enum EstadoPublicaciond {
+    BORRADOR, EN_REVISION, APROBADO, PUBLICADO, RECHAZADO
+}
+enum Categoriad {
+    GENERAL, DE_GRUPO, CORPORATIVO, INSTITUCIONAL, INTERNO
+}
+enum Impuestod {
+    IVA19, IVA6, IVA0, ICO, IPOCONSUMO8
+}
+enum TipoPersonad {
+    NATURAL, JURIDICA
+}
+enum PeriodicidadFacturaciond {
+    SEMANAL, QUINCENAL, MENSUAL, BIMESTRAL, TRIMESTRAL
+}
+enum TipoEventod {
+    INTERNO, EXTERNO, PATROCINADO, PUBLICO
+}
+enum TipoRecursod {
+	Tiempo, Cantidad
+}
+
+enum Generod {
+	Masculino, Femenino, Otro
+}
+
+enum Beneficiosd {
+	Market, Entrada_Miembro, Espacios_Reserva, Invitados, Landings
+}
+
+enum TipoContenidosd {
+	Negocios, Cultura, Enfoque
+}
+
+enum TipoIniciod {
+	Inicio, Fin
+}

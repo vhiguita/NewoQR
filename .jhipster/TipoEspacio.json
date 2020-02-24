@@ -1,0 +1,23 @@
+{
+    "name": "TipoEspacio",
+    "fields": [
+        {
+            "fieldName": "tipoEspacio",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191022215049",
+    "entityTableName": "tipo_espacio",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

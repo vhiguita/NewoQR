@@ -1,0 +1,147 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Recursos Fisicos
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Recurso</ion-label>
+                <ion-input type="text" name="recurso" formControlName="recurso"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo</ion-label>
+                <ion-select formControlName="tipo" id="field_tipo"  required>
+                        <ion-select-option value="Tiempo">{{'TipoRecursod.Tiempo' | translate}}</ion-select-option>
+                        <ion-select-option value="Cantidad">{{'TipoRecursod.Cantidad' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Unidad Medida</ion-label>
+                <ion-input type="text" name="unidadMedida" formControlName="unidadMedida"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor Unitario</ion-label>
+                <ion-input type="number" name="valorUnitario" formControlName="valorUnitario"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 1 H</ion-label>
+                <ion-input type="number" name="valor1H" formControlName="valor1H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 2 H</ion-label>
+                <ion-input type="number" name="valor2H" formControlName="valor2H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 3 H</ion-label>
+                <ion-input type="number" name="valor3H" formControlName="valor3H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 4 H</ion-label>
+                <ion-input type="number" name="valor4H" formControlName="valor4H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 5 H</ion-label>
+                <ion-input type="number" name="valor5H" formControlName="valor5H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 6 H</ion-label>
+                <ion-input type="number" name="valor6H" formControlName="valor6H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 7 H</ion-label>
+                <ion-input type="number" name="valor7H" formControlName="valor7H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 8 H</ion-label>
+                <ion-input type="number" name="valor8H" formControlName="valor8H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 9 H</ion-label>
+                <ion-input type="number" name="valor9H" formControlName="valor9H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 10 H</ion-label>
+                <ion-input type="number" name="valor10H" formControlName="valor10H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 11 H</ion-label>
+                <ion-input type="number" name="valor11H" formControlName="valor11H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor 12 H</ion-label>
+                <ion-input type="number" name="valor12H" formControlName="valor12H"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Impuesto</ion-label>
+                <ion-select formControlName="impuesto" id="field_impuesto" >
+                        <ion-select-option value="IVA19">{{'Impuestod.IVA19' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA6">{{'Impuestod.IVA6' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA0">{{'Impuestod.IVA0' | translate}}</ion-select-option>
+                        <ion-select-option value="ICO">{{'Impuestod.ICO' | translate}}</ion-select-option>
+                        <ion-select-option value="IPOCONSUMO8">{{'Impuestod.IPOCONSUMO8' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + recursosFisicos.fotoContentType + ';base64,' + recursosFisicos.foto" style="max-height: 100px;" *ngIf="recursosFisicos?.foto" alt="recursosFisicos image"/>
+                    <div *ngIf="recursosFisicos.foto">
+                        <p>{{recursosFisicos.fotoContentType}}, {{byteSize(recursosFisicos.foto)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('foto', 'fotoContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, recursosFisicos, 'foto', true)" accept="image/*"/>
+                    <ion-button *ngIf="!recursosFisicos?.foto" (click)="getPicture('foto')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <div *ngIf="recursosFisicos.video">
+                        <p>{{recursosFisicos.videoContentType}}, {{byteSize(recursosFisicos.video)}}</p>
+                        <ion-button color="danger" (click)="recursosFisicos.video=null;recursosFisicos.videoContentType=null;">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, recursosFisicos, 'video', false)"/>
+                </div>
+            </ion-item>
+            <ion-item>
+                <ion-label>Sede</ion-label>
+                <ion-select id="field_sede" formControlName="sede" [compareWith]="compareSedes">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="sedesOption" *ngFor="let sedesOption of sedes; trackBy: trackSedesById">{{sedesOption.nombreSede}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Recurso</ion-label>
+                <ion-select id="field_tipoRecurso" formControlName="tipoRecurso" [compareWith]="compareTipoRecurso">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="tipoRecursoOption" *ngFor="let tipoRecursoOption of tipoRecursos; trackBy: trackTipoRecursoById">{{tipoRecursoOption.nombre}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

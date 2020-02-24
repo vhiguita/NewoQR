@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Tipo Prepago Consumo
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre</ion-label>
+            <div item-content>
+                <span>{{tipoPrepagoConsumo.nombre}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{tipoPrepagoConsumo.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor Minimo</ion-label>
+            <div item-content>
+                <span>{{tipoPrepagoConsumo.valorMinimo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor Maximo</ion-label>
+            <div item-content>
+                <span>{{tipoPrepagoConsumo.valorMaximo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo Beneficio</ion-label>
+            <div item-content *ngIf="tipoPrepagoConsumo.tipoBeneficio">
+                <a>{{tipoPrepagoConsumo.tipoBeneficio?.tipoBeneficio}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(tipoPrepagoConsumo)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(tipoPrepagoConsumo)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

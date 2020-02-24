@@ -1,0 +1,107 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Video Blog
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Titulo</ion-label>
+            <div item-content>
+                <span>{{videoBlog.titulo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{videoBlog.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Contenido</ion-label>
+            <div item-content>
+                <span>{{videoBlog.tipoContenido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Contenido</ion-label>
+            <div item-content>
+                <span>{{videoBlog.contenido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha</ion-label>
+            <div item-content>
+                <span>{{videoBlog.fecha | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <span>{{videoBlog.video}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Estado Publicacion</ion-label>
+            <div item-content>
+                <span>{{videoBlog.estadoPublicacion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Consumo</ion-label>
+            <div item-content>
+                <span>{{videoBlog.tipoConsumo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor</ion-label>
+            <div item-content>
+                <span>{{videoBlog.valor}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{videoBlog.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Vistas</ion-label>
+            <div item-content>
+                <span>{{videoBlog.vistas}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Me Gusta</ion-label>
+            <div item-content>
+                <span>{{videoBlog.meGusta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Seguidores</ion-label>
+            <div item-content>
+                <span>{{videoBlog.seguidores}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Id User</ion-label>
+            <div item-content>{{videoBlog.idUser?.id}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Categoria Blog</ion-label>
+            <div item-content *ngIf="videoBlog.categoriaBlog">
+                <a>{{videoBlog.categoriaBlog?.categoria}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(videoBlog)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(videoBlog)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

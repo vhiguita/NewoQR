@@ -1,0 +1,131 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Productos Servicios
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre Producto</ion-label>
+            <div item-content>
+                <span>{{productosServicios.nombreProducto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{productosServicios.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Inventariables</ion-label>
+            <div item-content>
+                <span>{{productosServicios.inventariables}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor</ion-label>
+            <div item-content>
+                <span>{{productosServicios.valor}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{productosServicios.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <span>{{productosServicios.video}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="productosServicios.imagen1">
+                    <a (click)="openFile(productosServicios.imagen1ContentType, productosServicios.imagen1)">
+                        <img [src]="'data:' + productosServicios.imagen1ContentType + ';base64,' + productosServicios.imagen1" style="max-width: 100%;" alt="productosServicios image"/>
+                    </a>
+                    {{productosServicios.imagen1ContentType}}, {{byteSize(productosServicios.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="productosServicios.imagen2">
+                    <a (click)="openFile(productosServicios.imagen2ContentType, productosServicios.imagen2)">
+                        <img [src]="'data:' + productosServicios.imagen2ContentType + ';base64,' + productosServicios.imagen2" style="max-width: 100%;" alt="productosServicios image"/>
+                    </a>
+                    {{productosServicios.imagen2ContentType}}, {{byteSize(productosServicios.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 3</ion-label>
+            <div item-content>
+                <div *ngIf="productosServicios.imagen3">
+                    <a (click)="openFile(productosServicios.imagen3ContentType, productosServicios.imagen3)">
+                        <img [src]="'data:' + productosServicios.imagen3ContentType + ';base64,' + productosServicios.imagen3" style="max-width: 100%;" alt="productosServicios image"/>
+                    </a>
+                    {{productosServicios.imagen3ContentType}}, {{byteSize(productosServicios.imagen3)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 4</ion-label>
+            <div item-content>
+                <div *ngIf="productosServicios.imagen4">
+                    <a (click)="openFile(productosServicios.imagen4ContentType, productosServicios.imagen4)">
+                        <img [src]="'data:' + productosServicios.imagen4ContentType + ';base64,' + productosServicios.imagen4" style="max-width: 100%;" alt="productosServicios image"/>
+                    </a>
+                    {{productosServicios.imagen4ContentType}}, {{byteSize(productosServicios.imagen4)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 5</ion-label>
+            <div item-content>
+                <div *ngIf="productosServicios.imagen5">
+                    <a (click)="openFile(productosServicios.imagen5ContentType, productosServicios.imagen5)">
+                        <img [src]="'data:' + productosServicios.imagen5ContentType + ';base64,' + productosServicios.imagen5" style="max-width: 100%;" alt="productosServicios image"/>
+                    </a>
+                    {{productosServicios.imagen5ContentType}}, {{byteSize(productosServicios.imagen5)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 6</ion-label>
+            <div item-content>
+                <div *ngIf="productosServicios.imagen6">
+                    <a (click)="openFile(productosServicios.imagen6ContentType, productosServicios.imagen6)">
+                        <img [src]="'data:' + productosServicios.imagen6ContentType + ';base64,' + productosServicios.imagen6" style="max-width: 100%;" alt="productosServicios image"/>
+                    </a>
+                    {{productosServicios.imagen6ContentType}}, {{byteSize(productosServicios.imagen6)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Web</ion-label>
+            <div item-content>
+                <span>{{productosServicios.web}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>User</ion-label>
+            <div item-content>{{productosServicios.user?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(productosServicios)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(productosServicios)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

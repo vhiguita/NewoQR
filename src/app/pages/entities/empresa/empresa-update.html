@@ -1,0 +1,139 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Empresa
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Razon Social</ion-label>
+                <ion-input type="text" name="razonSocial" formControlName="razonSocial"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nit</ion-label>
+                <ion-input type="text" name="nit" formControlName="nit"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Direccion</ion-label>
+                <ion-input type="text" name="direccion" formControlName="direccion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Telefono</ion-label>
+                <ion-input type="text" name="telefono" formControlName="telefono"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Correo</ion-label>
+                <ion-input type="text" name="correo" formControlName="correo"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Web</ion-label>
+                <ion-input type="text" name="web" formControlName="web"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Celular</ion-label>
+                <ion-input type="text" name="celular" formControlName="celular"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-textarea placeholder="Biografia" formControlName="biografia" id="field_biografia"></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + empresa.imagen1ContentType + ';base64,' + empresa.imagen1" style="max-height: 100px;" *ngIf="empresa?.imagen1" alt="empresa image"/>
+                    <div *ngIf="empresa.imagen1">
+                        <p>{{empresa.imagen1ContentType}}, {{byteSize(empresa.imagen1)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen1', 'imagen1ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, empresa, 'imagen1', true)" accept="image/*"/>
+                    <ion-button *ngIf="!empresa?.imagen1" (click)="getPicture('imagen1')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + empresa.imagen2ContentType + ';base64,' + empresa.imagen2" style="max-height: 100px;" *ngIf="empresa?.imagen2" alt="empresa image"/>
+                    <div *ngIf="empresa.imagen2">
+                        <p>{{empresa.imagen2ContentType}}, {{byteSize(empresa.imagen2)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen2', 'imagen2ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, empresa, 'imagen2', true)" accept="image/*"/>
+                    <ion-button *ngIf="!empresa?.imagen2" (click)="getPicture('imagen2')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + empresa.imagen3ContentType + ';base64,' + empresa.imagen3" style="max-height: 100px;" *ngIf="empresa?.imagen3" alt="empresa image"/>
+                    <div *ngIf="empresa.imagen3">
+                        <p>{{empresa.imagen3ContentType}}, {{byteSize(empresa.imagen3)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen3', 'imagen3ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, empresa, 'imagen3', true)" accept="image/*"/>
+                    <ion-button *ngIf="!empresa?.imagen3" (click)="getPicture('imagen3')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Facebook</ion-label>
+                <ion-input type="text" name="facebook" formControlName="facebook"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Instagram</ion-label>
+                <ion-input type="text" name="instagram" formControlName="instagram"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Id Google</ion-label>
+                <ion-input type="text" name="idGoogle" formControlName="idGoogle"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Twiter</ion-label>
+                <ion-input type="text" name="twiter" formControlName="twiter"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Conocimientos Que Domina</ion-label>
+                <ion-input type="text" name="conocimientosQueDomina" formControlName="conocimientosQueDomina"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Temas De Interes</ion-label>
+                <ion-input type="text" name="temasDeInteres" formControlName="temasDeInteres"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Miembro</ion-label>
+                <ion-select id="field_miembro" formControlName="miembro" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

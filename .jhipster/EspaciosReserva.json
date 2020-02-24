@@ -1,0 +1,145 @@
+{
+    "name": "EspaciosReserva",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "facilidades",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "capacidad",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "apertura",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 5
+        },
+        {
+            "fieldName": "cierre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 5
+        },
+        {
+            "fieldName": "wifi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "video",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imagen1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen3",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen4",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen5",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen6",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "tarifa1Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa2Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa3Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa4Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa5Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa6Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa7Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tarifa8Hora",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "impuesto",
+            "fieldType": "Impuestod",
+            "fieldValues": "IVA19,IVA6,IVA0,ICO,IPOCONSUMO8"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "sedes",
+            "otherEntityRelationshipName": "espaciosReserva",
+            "relationshipName": "sede",
+            "otherEntityField": "nombreSede"
+        }
+    ],
+    "changelogDate": "20191022215052",
+    "entityTableName": "espacios_reserva",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

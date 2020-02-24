@@ -1,0 +1,158 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Evento
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre Evento</ion-label>
+            <div item-content>
+                <span>{{evento.nombreEvento}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{evento.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Contenido</ion-label>
+            <div item-content>
+                <span>{{evento.contenido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Audio</ion-label>
+            <div item-content>
+                <div *ngIf="evento.audio">
+                    <a (click)="openFile(evento.audioContentType, evento.audio)" jhiTranslate="entity.action.open">open</a>
+                    {{evento.audioContentType}}, {{byteSize(evento.audio)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <div *ngIf="evento.video">
+                    <a (click)="openFile(evento.videoContentType, evento.video)" jhiTranslate="entity.action.open">open</a>
+                    {{evento.videoContentType}}, {{byteSize(evento.video)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="evento.imagen1">
+                    <a (click)="openFile(evento.imagen1ContentType, evento.imagen1)">
+                        <img [src]="'data:' + evento.imagen1ContentType + ';base64,' + evento.imagen1" style="max-width: 100%;" alt="evento image"/>
+                    </a>
+                    {{evento.imagen1ContentType}}, {{byteSize(evento.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="evento.imagen2">
+                    <a (click)="openFile(evento.imagen2ContentType, evento.imagen2)">
+                        <img [src]="'data:' + evento.imagen2ContentType + ';base64,' + evento.imagen2" style="max-width: 100%;" alt="evento image"/>
+                    </a>
+                    {{evento.imagen2ContentType}}, {{byteSize(evento.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Banner</ion-label>
+            <div item-content>
+                <div *ngIf="evento.banner">
+                    <a (click)="openFile(evento.bannerContentType, evento.banner)">
+                        <img [src]="'data:' + evento.bannerContentType + ';base64,' + evento.banner" style="max-width: 100%;" alt="evento image"/>
+                    </a>
+                    {{evento.bannerContentType}}, {{byteSize(evento.banner)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Consumo</ion-label>
+            <div item-content>
+                <span>{{evento.tipoConsumo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor</ion-label>
+            <div item-content>
+                <span>{{evento.valor}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{evento.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Evento</ion-label>
+            <div item-content>
+                <span>{{evento.tipoEvento}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Evento NEWO</ion-label>
+            <div item-content>
+                <span>{{evento.eventoNEWO}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Web</ion-label>
+            <div item-content>
+                <span>{{evento.web}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Vistas</ion-label>
+            <div item-content>
+                <span>{{evento.vistas}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Me Gusta</ion-label>
+            <div item-content>
+                <span>{{evento.meGusta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Seguidores</ion-label>
+            <div item-content>
+                <span>{{evento.seguidores}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Categoria Evento</ion-label>
+            <div item-content *ngIf="evento.categoriaEvento">
+                <a>{{evento.categoriaEvento?.categoria}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Id User</ion-label>
+            <div item-content>{{evento.idUser?.id}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Grupos</ion-label>
+            <div item-content *ngIf="evento.grupos">
+                <a>{{evento.grupos?.nombreGrupo}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(evento)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(evento)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

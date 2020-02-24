@@ -1,0 +1,98 @@
+{
+    "name": "Feed",
+    "fields": [
+        {
+            "fieldName": "titulo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "imagen1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "imagen2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "tipoContenido",
+            "fieldType": "Categoriad",
+            "fieldValues": "GENERAL,DE_GRUPO,CORPORATIVO,INSTITUCIONAL,INTERNO"
+        },
+        {
+            "fieldName": "contenido",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "impuesto",
+            "fieldType": "Impuestod",
+            "fieldValues": "IVA19,IVA6,IVA0,ICO,IPOCONSUMO8"
+        },
+        {
+            "fieldName": "vistas",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "meGusta",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "seguidores",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "feed",
+            "relationshipName": "idUser",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "categoriaContenidos",
+            "otherEntityRelationshipName": "feed",
+            "relationshipName": "categoriaFeed",
+            "otherEntityField": "categoria"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "comentarioFeed",
+            "otherEntityRelationshipName": "feed",
+            "relationshipName": "comentarioFeed"
+        }
+    ],
+    "changelogDate": "20191022215110",
+    "entityTableName": "feed",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

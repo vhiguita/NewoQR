@@ -1,0 +1,167 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Sedes
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nombre Sede</ion-label>
+                <ion-input type="text" name="nombreSede" formControlName="nombreSede"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Coordenada X</ion-label>
+                <ion-input type="number" name="coordenadaX" formControlName="coordenadaX"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Coordenada Y</ion-label>
+                <ion-input type="number" name="coordenadaY" formControlName="coordenadaY"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Direccion</ion-label>
+                <ion-input type="text" name="direccion" formControlName="direccion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Telefono Comunidad</ion-label>
+                <ion-input type="text" name="telefonoComunidad" formControlName="telefonoComunidad"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Telefono Negocio</ion-label>
+                <ion-input type="text" name="telefonoNegocio" formControlName="telefonoNegocio"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-textarea placeholder="Descripcion Sede" formControlName="descripcionSede" id="field_descripcionSede"></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Horario</ion-label>
+                <ion-input type="text" name="horario" formControlName="horario"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Video</ion-label>
+                <ion-input type="text" name="video" formControlName="video"></ion-input>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + sedes.imagen1ContentType + ';base64,' + sedes.imagen1" style="max-height: 100px;" *ngIf="sedes?.imagen1" alt="sedes image"/>
+                    <div *ngIf="sedes.imagen1">
+                        <p>{{sedes.imagen1ContentType}}, {{byteSize(sedes.imagen1)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen1', 'imagen1ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, sedes, 'imagen1', true)" accept="image/*"/>
+                    <ion-button *ngIf="!sedes?.imagen1" (click)="getPicture('imagen1')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + sedes.imagen2ContentType + ';base64,' + sedes.imagen2" style="max-height: 100px;" *ngIf="sedes?.imagen2" alt="sedes image"/>
+                    <div *ngIf="sedes.imagen2">
+                        <p>{{sedes.imagen2ContentType}}, {{byteSize(sedes.imagen2)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen2', 'imagen2ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, sedes, 'imagen2', true)" accept="image/*"/>
+                    <ion-button *ngIf="!sedes?.imagen2" (click)="getPicture('imagen2')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + sedes.imagen3ContentType + ';base64,' + sedes.imagen3" style="max-height: 100px;" *ngIf="sedes?.imagen3" alt="sedes image"/>
+                    <div *ngIf="sedes.imagen3">
+                        <p>{{sedes.imagen3ContentType}}, {{byteSize(sedes.imagen3)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen3', 'imagen3ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, sedes, 'imagen3', true)" accept="image/*"/>
+                    <ion-button *ngIf="!sedes?.imagen3" (click)="getPicture('imagen3')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + sedes.imagen4ContentType + ';base64,' + sedes.imagen4" style="max-height: 100px;" *ngIf="sedes?.imagen4" alt="sedes image"/>
+                    <div *ngIf="sedes.imagen4">
+                        <p>{{sedes.imagen4ContentType}}, {{byteSize(sedes.imagen4)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen4', 'imagen4ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, sedes, 'imagen4', true)" accept="image/*"/>
+                    <ion-button *ngIf="!sedes?.imagen4" (click)="getPicture('imagen4')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + sedes.imagen5ContentType + ';base64,' + sedes.imagen5" style="max-height: 100px;" *ngIf="sedes?.imagen5" alt="sedes image"/>
+                    <div *ngIf="sedes.imagen5">
+                        <p>{{sedes.imagen5ContentType}}, {{byteSize(sedes.imagen5)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen5', 'imagen5ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, sedes, 'imagen5', true)" accept="image/*"/>
+                    <ion-button *ngIf="!sedes?.imagen5" (click)="getPicture('imagen5')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + sedes.imagen6ContentType + ';base64,' + sedes.imagen6" style="max-height: 100px;" *ngIf="sedes?.imagen6" alt="sedes image"/>
+                    <div *ngIf="sedes.imagen6">
+                        <p>{{sedes.imagen6ContentType}}, {{byteSize(sedes.imagen6)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen6', 'imagen6ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, sedes, 'imagen6', true)" accept="image/*"/>
+                    <ion-button *ngIf="!sedes?.imagen6" (click)="getPicture('imagen6')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <ion-label>Ciudad</ion-label>
+                <ion-select id="field_ciudad" formControlName="ciudad" [compareWith]="compareCiudad">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="ciudadOption" *ngFor="let ciudadOption of ciudads; trackBy: trackCiudadById">{{ciudadOption.nombreCiudad}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Registro Facturacion
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Valor</ion-label>
+            <div item-content>
+                <span>{{registroFacturacion.valor}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha Registro</ion-label>
+            <div item-content>
+                <span>{{registroFacturacion.fechaRegistro | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha Facturacion</ion-label>
+            <div item-content>
+                <span>{{registroFacturacion.fechaFacturacion | date:'mediumDate'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo Registro</ion-label>
+            <div item-content *ngIf="registroFacturacion.tipoRegistro">
+                <a>{{registroFacturacion.tipoRegistro?.descripcion}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>User</ion-label>
+            <div item-content>{{registroFacturacion.user?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(registroFacturacion)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(registroFacturacion)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

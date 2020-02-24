@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Video Blogs
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let videoBlog of videoBlogs; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(videoBlog)">
+              <ion-label text-wrap>
+                <p>{{videoBlog.titulo}}</p>
+                <p>{{videoBlog.descripcion}}</p>
+                <!-- todo: special handling for translating enum - {{'Categoriad.' + videoBlog.tipoContenido}}" -->
+                <p>{{videoBlog.tipoContenido}}</p>
+                <p>{{videoBlog.contenido}}</p>
+                <p>{{videoBlog.fecha | date:'medium'}}</p>
+                <p>{{videoBlog.video}}</p>
+                <!-- todo: special handling for translating enum - {{'EstadoPublicaciond.' + videoBlog.estadoPublicacion}}" -->
+                <p>{{videoBlog.estadoPublicacion}}</p>
+                <!-- todo: special handling for translating enum - {{'TipoConsumod.' + videoBlog.tipoConsumo}}" -->
+                <p>{{videoBlog.tipoConsumo}}</p>
+                <p>{{videoBlog.valor}}</p>
+                <!-- todo: special handling for translating enum - {{'Impuestod.' + videoBlog.impuesto}}" -->
+                <p>{{videoBlog.impuesto}}</p>
+                <p>{{videoBlog.vistas}}</p>
+                <p>{{videoBlog.meGusta}}</p>
+                <p>{{videoBlog.seguidores}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, videoBlog)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(videoBlog)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!videoBlogs?.length">
+        <ion-label>
+            No Video Blogs found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

@@ -1,0 +1,223 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Espacio Libre
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.nombre}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Capacidad Instalada</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.capacidadInstalada}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Wifi</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.wifi}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 1 H Miembro</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa1hMiembro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 2 H Miembro</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa2hMiembro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 3 H Miembro</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa3hMiembro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 4 H Miembro</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa4hMiembro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 5 H Miembro</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa5hMiembro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 6 H Miembro</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa6hMiembro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 7 H Miembro</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa7hMiembro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 8 H Miembro</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa8hMiembro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 1 H Invitado</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa1hInvitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 2 H Invitado</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa2hInvitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 3 H Invitado</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa3hInvitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 4 H Invitado</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa4hInvitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 5 H Invitado</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa5hInvitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 6 H Invitado</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa6hInvitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 7 H Invitado</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa7hInvitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 8 H Invitado</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.tarifa8hInvitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <span>{{espacioLibre.video}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="espacioLibre.imagen1">
+                    <a (click)="openFile(espacioLibre.imagen1ContentType, espacioLibre.imagen1)">
+                        <img [src]="'data:' + espacioLibre.imagen1ContentType + ';base64,' + espacioLibre.imagen1" style="max-width: 100%;" alt="espacioLibre image"/>
+                    </a>
+                    {{espacioLibre.imagen1ContentType}}, {{byteSize(espacioLibre.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="espacioLibre.imagen2">
+                    <a (click)="openFile(espacioLibre.imagen2ContentType, espacioLibre.imagen2)">
+                        <img [src]="'data:' + espacioLibre.imagen2ContentType + ';base64,' + espacioLibre.imagen2" style="max-width: 100%;" alt="espacioLibre image"/>
+                    </a>
+                    {{espacioLibre.imagen2ContentType}}, {{byteSize(espacioLibre.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 3</ion-label>
+            <div item-content>
+                <div *ngIf="espacioLibre.imagen3">
+                    <a (click)="openFile(espacioLibre.imagen3ContentType, espacioLibre.imagen3)">
+                        <img [src]="'data:' + espacioLibre.imagen3ContentType + ';base64,' + espacioLibre.imagen3" style="max-width: 100%;" alt="espacioLibre image"/>
+                    </a>
+                    {{espacioLibre.imagen3ContentType}}, {{byteSize(espacioLibre.imagen3)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 4</ion-label>
+            <div item-content>
+                <div *ngIf="espacioLibre.imagen4">
+                    <a (click)="openFile(espacioLibre.imagen4ContentType, espacioLibre.imagen4)">
+                        <img [src]="'data:' + espacioLibre.imagen4ContentType + ';base64,' + espacioLibre.imagen4" style="max-width: 100%;" alt="espacioLibre image"/>
+                    </a>
+                    {{espacioLibre.imagen4ContentType}}, {{byteSize(espacioLibre.imagen4)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 5</ion-label>
+            <div item-content>
+                <div *ngIf="espacioLibre.imagen5">
+                    <a (click)="openFile(espacioLibre.imagen5ContentType, espacioLibre.imagen5)">
+                        <img [src]="'data:' + espacioLibre.imagen5ContentType + ';base64,' + espacioLibre.imagen5" style="max-width: 100%;" alt="espacioLibre image"/>
+                    </a>
+                    {{espacioLibre.imagen5ContentType}}, {{byteSize(espacioLibre.imagen5)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 6</ion-label>
+            <div item-content>
+                <div *ngIf="espacioLibre.imagen6">
+                    <a (click)="openFile(espacioLibre.imagen6ContentType, espacioLibre.imagen6)">
+                        <img [src]="'data:' + espacioLibre.imagen6ContentType + ';base64,' + espacioLibre.imagen6" style="max-width: 100%;" alt="espacioLibre image"/>
+                    </a>
+                    {{espacioLibre.imagen6ContentType}}, {{byteSize(espacioLibre.imagen6)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Sede</ion-label>
+            <div item-content *ngIf="espacioLibre.sede">
+                <a>{{espacioLibre.sede?.nombreSede}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo Espacio</ion-label>
+            <div item-content *ngIf="espacioLibre.tipoEspacio">
+                <a>{{espacioLibre.tipoEspacio?.tipoEspacio}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(espacioLibre)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(espacioLibre)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

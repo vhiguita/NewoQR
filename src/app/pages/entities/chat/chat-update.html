@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Chat
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Mensaje</ion-label>
+                <ion-input type="text" name="mensaje" formControlName="mensaje"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Sender</ion-label>
+                <ion-input type="number" name="sender" formControlName="sender"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Read</ion-label>
+                <ion-checkbox formControlName="read"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Delivered</ion-label>
+                <ion-checkbox formControlName="delivered"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Sent</ion-label>
+                <ion-checkbox formControlName="sent"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Fecha</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="fecha" id="field_fecha"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label>Chats Listado</ion-label>
+                <ion-select id="field_chatsListado" formControlName="chatsListado" [compareWith]="compareChatsListado">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="chatsListadoOption" *ngFor="let chatsListadoOption of chatsListados; trackBy: trackChatsListadoById">{{chatsListadoOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>De</ion-label>
+                <ion-select id="field_de" formControlName="de" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Para</ion-label>
+                <ion-select id="field_para" formControlName="para" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

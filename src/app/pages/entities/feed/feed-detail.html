@@ -1,0 +1,105 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Feed
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Titulo</ion-label>
+            <div item-content>
+                <span>{{feed.titulo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{feed.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="feed.imagen1">
+                    <a (click)="openFile(feed.imagen1ContentType, feed.imagen1)">
+                        <img [src]="'data:' + feed.imagen1ContentType + ';base64,' + feed.imagen1" style="max-width: 100%;" alt="feed image"/>
+                    </a>
+                    {{feed.imagen1ContentType}}, {{byteSize(feed.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="feed.imagen2">
+                    <a (click)="openFile(feed.imagen2ContentType, feed.imagen2)">
+                        <img [src]="'data:' + feed.imagen2ContentType + ';base64,' + feed.imagen2" style="max-width: 100%;" alt="feed image"/>
+                    </a>
+                    {{feed.imagen2ContentType}}, {{byteSize(feed.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Contenido</ion-label>
+            <div item-content>
+                <span>{{feed.tipoContenido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Contenido</ion-label>
+            <div item-content>
+                <span>{{feed.contenido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha</ion-label>
+            <div item-content>
+                <span>{{feed.fecha | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{feed.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Vistas</ion-label>
+            <div item-content>
+                <span>{{feed.vistas}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Me Gusta</ion-label>
+            <div item-content>
+                <span>{{feed.meGusta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Seguidores</ion-label>
+            <div item-content>
+                <span>{{feed.seguidores}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Id User</ion-label>
+            <div item-content>{{feed.idUser?.id}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Categoria Feed</ion-label>
+            <div item-content *ngIf="feed.categoriaFeed">
+                <a>{{feed.categoriaFeed?.categoria}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(feed)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(feed)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

@@ -1,0 +1,29 @@
+{
+    "name": "MargenNewoEventos",
+    "fields": [
+        {
+            "fieldName": "porcentajeMargen",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "evento",
+            "otherEntityRelationshipName": "margenNewoEventos",
+            "relationshipName": "evento",
+            "otherEntityField": "nombreEvento",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191022215123",
+    "entityTableName": "margen_newo_eventos",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

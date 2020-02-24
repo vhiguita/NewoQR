@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Comentario Video Blog
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Comentario</ion-label>
+            <div item-content>
+                <span>{{comentarioVideoBlog.comentario}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha</ion-label>
+            <div item-content>
+                <span>{{comentarioVideoBlog.fecha | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Me Gusta</ion-label>
+            <div item-content>
+                <span>{{comentarioVideoBlog.meGusta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Seguir</ion-label>
+            <div item-content>
+                <span>{{comentarioVideoBlog.seguir}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Video Blog</ion-label>
+            <div item-content *ngIf="comentarioVideoBlog.videoBlog">
+                <a>{{comentarioVideoBlog.videoBlog?.id}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Id User</ion-label>
+            <div item-content>{{comentarioVideoBlog.idUser?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(comentarioVideoBlog)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(comentarioVideoBlog)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

@@ -1,0 +1,136 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Grupos
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre Grupo</ion-label>
+            <div item-content>
+                <span>{{grupos.nombreGrupo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Instagram</ion-label>
+            <div item-content>
+                <span>{{grupos.instagram}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Facebook</ion-label>
+            <div item-content>
+                <span>{{grupos.facebook}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Twiter</ion-label>
+            <div item-content>
+                <span>{{grupos.twiter}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Linked In</ion-label>
+            <div item-content>
+                <span>{{grupos.linkedIn}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Grupo</ion-label>
+            <div item-content>
+                <span>{{grupos.tipoGrupo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Consumo</ion-label>
+            <div item-content>
+                <span>{{grupos.tipoConsumo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor Suscripcion</ion-label>
+            <div item-content>
+                <span>{{grupos.valorSuscripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{grupos.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Reglas Grupo</ion-label>
+            <div item-content>
+                <span>{{grupos.reglasGrupo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Audio</ion-label>
+            <div item-content>
+                <div *ngIf="grupos.audio">
+                    <a (click)="openFile(grupos.audioContentType, grupos.audio)" jhiTranslate="entity.action.open">open</a>
+                    {{grupos.audioContentType}}, {{byteSize(grupos.audio)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <div *ngIf="grupos.video">
+                    <a (click)="openFile(grupos.videoContentType, grupos.video)" jhiTranslate="entity.action.open">open</a>
+                    {{grupos.videoContentType}}, {{byteSize(grupos.video)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="grupos.imagen1">
+                    <a (click)="openFile(grupos.imagen1ContentType, grupos.imagen1)">
+                        <img [src]="'data:' + grupos.imagen1ContentType + ';base64,' + grupos.imagen1" style="max-width: 100%;" alt="grupos image"/>
+                    </a>
+                    {{grupos.imagen1ContentType}}, {{byteSize(grupos.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="grupos.imagen2">
+                    <a (click)="openFile(grupos.imagen2ContentType, grupos.imagen2)">
+                        <img [src]="'data:' + grupos.imagen2ContentType + ';base64,' + grupos.imagen2" style="max-width: 100%;" alt="grupos image"/>
+                    </a>
+                    {{grupos.imagen2ContentType}}, {{byteSize(grupos.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Banner</ion-label>
+            <div item-content>
+                <div *ngIf="grupos.banner">
+                    <a (click)="openFile(grupos.bannerContentType, grupos.banner)">
+                        <img [src]="'data:' + grupos.bannerContentType + ';base64,' + grupos.banner" style="max-width: 100%;" alt="grupos image"/>
+                    </a>
+                    {{grupos.bannerContentType}}, {{byteSize(grupos.banner)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Categoria Grupo</ion-label>
+            <div item-content *ngIf="grupos.categoriaGrupo">
+                <a>{{grupos.categoriaGrupo?.categoria}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(grupos)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(grupos)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

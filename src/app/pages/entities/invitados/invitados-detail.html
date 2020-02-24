@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Invitados
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre</ion-label>
+            <div item-content>
+                <span>{{invitados.nombre}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Apellido</ion-label>
+            <div item-content>
+                <span>{{invitados.apellido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Documento</ion-label>
+            <div item-content>
+                <span>{{invitados.tipoDocumento}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Identificacion</ion-label>
+            <div item-content>
+                <span>{{invitados.identificacion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Correo</ion-label>
+            <div item-content>
+                <span>{{invitados.correo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Telefono</ion-label>
+            <div item-content>
+                <span>{{invitados.telefono}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>User</ion-label>
+            <div item-content>{{invitados.user?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(invitados)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(invitados)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

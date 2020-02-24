@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Beneficio
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Beneficio</ion-label>
+                <ion-select formControlName="tipoBeneficio" id="field_tipoBeneficio"  required>
+                        <ion-select-option value="Market">{{'Beneficiosd.Market' | translate}}</ion-select-option>
+                        <ion-select-option value="Entrada_Miembro">{{'Beneficiosd.Entrada_Miembro' | translate}}</ion-select-option>
+                        <ion-select-option value="Espacios_Reserva">{{'Beneficiosd.Espacios_Reserva' | translate}}</ion-select-option>
+                        <ion-select-option value="Invitados">{{'Beneficiosd.Invitados' | translate}}</ion-select-option>
+                        <ion-select-option value="Landings">{{'Beneficiosd.Landings' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Descuento</ion-label>
+                <ion-input type="number" name="descuento" formControlName="descuento"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>User</ion-label>
+                <ion-select id="field_user" formControlName="user" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "sedes",
+            "otherEntityRelationshipName": "invitacion",
+            "relationshipName": "sede",
+            "otherEntityField": "nombreSede"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "invitados",
+            "otherEntityRelationshipName": "invitacion",
+            "relationshipName": "invitado",
+            "otherEntityField": "identificacion"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fechaInicio",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "fechaFin",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20191022211622",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "invitacion",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": true,
+    "pagination": "infinite-scroll",
+    "name": "Invitacion",
+    "readOnly": false,
+    "applications": "*"
+}

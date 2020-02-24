@@ -1,0 +1,153 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Recursos Fisicos
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Recurso</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.recurso}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.tipo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Unidad Medida</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.unidadMedida}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor Unitario</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valorUnitario}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 1 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor1H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 2 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor2H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 3 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor3H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 4 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor4H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 5 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor5H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 6 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor6H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 7 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor7H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 8 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor8H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 9 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor9H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 10 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor10H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 11 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor11H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor 12 H</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.valor12H}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{recursosFisicos.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Foto</ion-label>
+            <div item-content>
+                <div *ngIf="recursosFisicos.foto">
+                    <a (click)="openFile(recursosFisicos.fotoContentType, recursosFisicos.foto)">
+                        <img [src]="'data:' + recursosFisicos.fotoContentType + ';base64,' + recursosFisicos.foto" style="max-width: 100%;" alt="recursosFisicos image"/>
+                    </a>
+                    {{recursosFisicos.fotoContentType}}, {{byteSize(recursosFisicos.foto)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <div *ngIf="recursosFisicos.video">
+                    <a (click)="openFile(recursosFisicos.videoContentType, recursosFisicos.video)" jhiTranslate="entity.action.open">open</a>
+                    {{recursosFisicos.videoContentType}}, {{byteSize(recursosFisicos.video)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Sede</ion-label>
+            <div item-content *ngIf="recursosFisicos.sede">
+                <a>{{recursosFisicos.sede?.nombreSede}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo Recurso</ion-label>
+            <div item-content *ngIf="recursosFisicos.tipoRecurso">
+                <a>{{recursosFisicos.tipoRecurso?.nombre}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(recursosFisicos)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(recursosFisicos)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

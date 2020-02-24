@@ -1,0 +1,65 @@
+{
+    "name": "Chat",
+    "fields": [
+        {
+            "fieldName": "mensaje",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sender",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "read",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "delivered",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "sent",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chatsListado",
+            "otherEntityRelationshipName": "chat",
+            "relationshipName": "chatsListado",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "chat",
+            "relationshipName": "de",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "chat",
+            "relationshipName": "para",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191022215112",
+    "entityTableName": "chat",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,100 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Landing
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre</ion-label>
+            <div item-content>
+                <span>{{landing.nombre}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{landing.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Facilidades</ion-label>
+            <div item-content>
+                <span>{{landing.facilidades}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Telefono Negocio</ion-label>
+            <div item-content>
+                <span>{{landing.telefonoNegocio}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Numero Puestos</ion-label>
+            <div item-content>
+                <span>{{landing.numeroPuestos}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa Mensual</ion-label>
+            <div item-content>
+                <span>{{landing.tarifaMensual}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{landing.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="landing.imagen1">
+                    <a (click)="openFile(landing.imagen1ContentType, landing.imagen1)">
+                        <img [src]="'data:' + landing.imagen1ContentType + ';base64,' + landing.imagen1" style="max-width: 100%;" alt="landing image"/>
+                    </a>
+                    {{landing.imagen1ContentType}}, {{byteSize(landing.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="landing.imagen2">
+                    <a (click)="openFile(landing.imagen2ContentType, landing.imagen2)">
+                        <img [src]="'data:' + landing.imagen2ContentType + ';base64,' + landing.imagen2" style="max-width: 100%;" alt="landing image"/>
+                    </a>
+                    {{landing.imagen2ContentType}}, {{byteSize(landing.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 3</ion-label>
+            <div item-content>
+                <div *ngIf="landing.imagen3">
+                    <a (click)="openFile(landing.imagen3ContentType, landing.imagen3)">
+                        <img [src]="'data:' + landing.imagen3ContentType + ';base64,' + landing.imagen3" style="max-width: 100%;" alt="landing image"/>
+                    </a>
+                    {{landing.imagen3ContentType}}, {{byteSize(landing.imagen3)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Sede</ion-label>
+            <div item-content *ngIf="landing.sede">
+                <a>{{landing.sede?.nombreSede}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(landing)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(landing)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

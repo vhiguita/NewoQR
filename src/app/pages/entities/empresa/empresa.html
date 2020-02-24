@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Empresas
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let empresa of empresas; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(empresa)">
+              <ion-label text-wrap>
+                <p>{{empresa.razonSocial}}</p>
+                <p>{{empresa.nit}}</p>
+                <p>{{empresa.direccion}}</p>
+                <p>{{empresa.telefono}}</p>
+                <p>{{empresa.correo}}</p>
+                <p>{{empresa.web}}</p>
+                <p>{{empresa.celular}}</p>
+                <p>{{empresa.biografia}}</p>
+                <ion-avatar *ngIf="empresa.imagen1">
+                    <img [src]="'data:' + empresa.imagen1ContentType + ';base64,' + empresa.imagen1" />
+                    <p *ngIf="empresa.imagen1">{{empresa.imagen1ContentType}}, {{byteSize(empresa.imagen1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="empresa.imagen2">
+                    <img [src]="'data:' + empresa.imagen2ContentType + ';base64,' + empresa.imagen2" />
+                    <p *ngIf="empresa.imagen2">{{empresa.imagen2ContentType}}, {{byteSize(empresa.imagen2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="empresa.imagen3">
+                    <img [src]="'data:' + empresa.imagen3ContentType + ';base64,' + empresa.imagen3" />
+                    <p *ngIf="empresa.imagen3">{{empresa.imagen3ContentType}}, {{byteSize(empresa.imagen3)}}</p>
+                </ion-avatar>
+                <p>{{empresa.facebook}}</p>
+                <p>{{empresa.instagram}}</p>
+                <p>{{empresa.idGoogle}}</p>
+                <p>{{empresa.twiter}}</p>
+                <p>{{empresa.conocimientosQueDomina}}</p>
+                <p>{{empresa.temasDeInteres}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, empresa)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(empresa)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!empresas?.length">
+        <ion-label>
+            No Empresas found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

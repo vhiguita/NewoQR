@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Consumo Market
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Total Consumido</ion-label>
+                <ion-input type="number" name="totalConsumido" formControlName="totalConsumido"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Registro Fecha Inicial</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="registroFechaInicial" id="field_registroFechaInicial"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label>Registro Fecha Final</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="registroFechaFinal" id="field_registroFechaFinal"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label>Impuesto</ion-label>
+                <ion-select formControlName="impuesto" id="field_impuesto" >
+                        <ion-select-option value="IVA19">{{'Impuestod.IVA19' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA6">{{'Impuestod.IVA6' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA0">{{'Impuestod.IVA0' | translate}}</ion-select-option>
+                        <ion-select-option value="ICO">{{'Impuestod.ICO' | translate}}</ion-select-option>
+                        <ion-select-option value="IPOCONSUMO8">{{'Impuestod.IPOCONSUMO8' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>User</ion-label>
+                <ion-select id="field_user" formControlName="user" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

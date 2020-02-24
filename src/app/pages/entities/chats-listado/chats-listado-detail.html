@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Chats Listado
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{chatsListado.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Estatus</ion-label>
+            <div item-content>
+                <span>{{chatsListado.estatus}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Count</ion-label>
+            <div item-content>
+                <span>{{chatsListado.count}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Badge</ion-label>
+            <div item-content>
+                <span>{{chatsListado.badge}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Time</ion-label>
+            <div item-content>
+                <span>{{chatsListado.time}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Send Time</ion-label>
+            <div item-content>
+                <span>{{chatsListado.sendTime | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Grupo</ion-label>
+            <div item-content>
+                <span>{{chatsListado.grupo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Propietario</ion-label>
+            <div item-content>{{chatsListado.propietario?.id}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Destinatario</ion-label>
+            <div item-content>{{chatsListado.destinatario?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(chatsListado)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(chatsListado)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

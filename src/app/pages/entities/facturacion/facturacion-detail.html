@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Facturacion
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Titular Factura</ion-label>
+            <div item-content>
+                <span>{{facturacion.titularFactura}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Persona</ion-label>
+            <div item-content>
+                <span>{{facturacion.tipoPersona}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Periodicidad Facturacion</ion-label>
+            <div item-content>
+                <span>{{facturacion.periodicidadFacturacion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Maximo Monto</ion-label>
+            <div item-content>
+                <span>{{facturacion.maximoMonto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor</ion-label>
+            <div item-content>
+                <span>{{facturacion.valor}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Empresa</ion-label>
+            <div item-content *ngIf="facturacion.empresa">
+                <a>{{facturacion.empresa?.razonSocial}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Identificacion</ion-label>
+            <div item-content *ngIf="facturacion.identificacion">
+                <a>{{facturacion.identificacion?.identificaciontitular}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(facturacion)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(facturacion)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

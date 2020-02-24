@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Equipo Empresas
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let equipoEmpresas of equipoEmpresas; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(equipoEmpresas)">
+              <ion-label text-wrap>
+                <p>{{equipoEmpresas.nombre}}</p>
+                <p>{{equipoEmpresas.telefono}}</p>
+                <p>{{equipoEmpresas.correo}}</p>
+                <p>{{equipoEmpresas.direccion}}</p>
+                <p>{{equipoEmpresas.descripcion}}</p>
+                <ion-avatar *ngIf="equipoEmpresas.logo">
+                    <img [src]="'data:' + equipoEmpresas.logoContentType + ';base64,' + equipoEmpresas.logo" />
+                    <p *ngIf="equipoEmpresas.logo">{{equipoEmpresas.logoContentType}}, {{byteSize(equipoEmpresas.logo)}}</p>
+                </ion-avatar>
+                <p>{{equipoEmpresas.paginaWeb}}</p>
+                <p>{{equipoEmpresas.conocimientosQueDomina}}</p>
+                <p>{{equipoEmpresas.temasDeInteres}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, equipoEmpresas)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(equipoEmpresas)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!equipoEmpresas?.length">
+        <ion-label>
+            No Equipo Empresas found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

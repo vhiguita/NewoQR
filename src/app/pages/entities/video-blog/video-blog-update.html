@@ -1,0 +1,115 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Video Blog
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Titulo</ion-label>
+                <ion-input type="text" name="titulo" formControlName="titulo"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Descripcion</ion-label>
+                <ion-input type="text" name="descripcion" formControlName="descripcion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Contenido</ion-label>
+                <ion-select formControlName="tipoContenido" id="field_tipoContenido" >
+                        <ion-select-option value="GENERAL">{{'Categoriad.GENERAL' | translate}}</ion-select-option>
+                        <ion-select-option value="DE_GRUPO">{{'Categoriad.DE_GRUPO' | translate}}</ion-select-option>
+                        <ion-select-option value="CORPORATIVO">{{'Categoriad.CORPORATIVO' | translate}}</ion-select-option>
+                        <ion-select-option value="INSTITUCIONAL">{{'Categoriad.INSTITUCIONAL' | translate}}</ion-select-option>
+                        <ion-select-option value="INTERNO">{{'Categoriad.INTERNO' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-textarea placeholder="Contenido" formControlName="contenido" id="field_contenido"></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <ion-label>Fecha</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="fecha" id="field_fecha"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Video</ion-label>
+                <ion-input type="text" name="video" formControlName="video"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Estado Publicacion</ion-label>
+                <ion-select formControlName="estadoPublicacion" id="field_estadoPublicacion" >
+                        <ion-select-option value="BORRADOR">{{'EstadoPublicaciond.BORRADOR' | translate}}</ion-select-option>
+                        <ion-select-option value="EN_REVISION">{{'EstadoPublicaciond.EN_REVISION' | translate}}</ion-select-option>
+                        <ion-select-option value="APROBADO">{{'EstadoPublicaciond.APROBADO' | translate}}</ion-select-option>
+                        <ion-select-option value="PUBLICADO">{{'EstadoPublicaciond.PUBLICADO' | translate}}</ion-select-option>
+                        <ion-select-option value="RECHAZADO">{{'EstadoPublicaciond.RECHAZADO' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Consumo</ion-label>
+                <ion-select formControlName="tipoConsumo" id="field_tipoConsumo" >
+                        <ion-select-option value="GRATIS">{{'TipoConsumod.GRATIS' | translate}}</ion-select-option>
+                        <ion-select-option value="PAGO">{{'TipoConsumod.PAGO' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor</ion-label>
+                <ion-input type="number" name="valor" formControlName="valor"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Impuesto</ion-label>
+                <ion-select formControlName="impuesto" id="field_impuesto" >
+                        <ion-select-option value="IVA19">{{'Impuestod.IVA19' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA6">{{'Impuestod.IVA6' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA0">{{'Impuestod.IVA0' | translate}}</ion-select-option>
+                        <ion-select-option value="ICO">{{'Impuestod.ICO' | translate}}</ion-select-option>
+                        <ion-select-option value="IPOCONSUMO8">{{'Impuestod.IPOCONSUMO8' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Vistas</ion-label>
+                <ion-input type="number" name="vistas" formControlName="vistas"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Me Gusta</ion-label>
+                <ion-input type="number" name="meGusta" formControlName="meGusta"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Seguidores</ion-label>
+                <ion-input type="number" name="seguidores" formControlName="seguidores"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Id User</ion-label>
+                <ion-select id="field_idUser" formControlName="idUser" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Categoria Blog</ion-label>
+                <ion-select id="field_categoriaBlog" formControlName="categoriaBlog" [compareWith]="compareCategoriaContenidos">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="categoriaContenidosOption" *ngFor="let categoriaContenidosOption of categoriaContenidos; trackBy: trackCategoriaContenidosById">{{categoriaContenidosOption.categoria}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

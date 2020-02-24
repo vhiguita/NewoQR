@@ -1,0 +1,229 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Espacio Libre
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input type="text" name="nombre" formControlName="nombre"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Capacidad Instalada</ion-label>
+                <ion-input type="number" name="capacidadInstalada" formControlName="capacidadInstalada"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Wifi</ion-label>
+                <ion-input type="text" name="wifi" formControlName="wifi"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 1 H Miembro</ion-label>
+                <ion-input type="number" name="tarifa1hMiembro" formControlName="tarifa1hMiembro"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 2 H Miembro</ion-label>
+                <ion-input type="number" name="tarifa2hMiembro" formControlName="tarifa2hMiembro"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 3 H Miembro</ion-label>
+                <ion-input type="number" name="tarifa3hMiembro" formControlName="tarifa3hMiembro"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 4 H Miembro</ion-label>
+                <ion-input type="number" name="tarifa4hMiembro" formControlName="tarifa4hMiembro"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 5 H Miembro</ion-label>
+                <ion-input type="number" name="tarifa5hMiembro" formControlName="tarifa5hMiembro"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 6 H Miembro</ion-label>
+                <ion-input type="number" name="tarifa6hMiembro" formControlName="tarifa6hMiembro"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 7 H Miembro</ion-label>
+                <ion-input type="number" name="tarifa7hMiembro" formControlName="tarifa7hMiembro"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 8 H Miembro</ion-label>
+                <ion-input type="number" name="tarifa8hMiembro" formControlName="tarifa8hMiembro"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 1 H Invitado</ion-label>
+                <ion-input type="number" name="tarifa1hInvitado" formControlName="tarifa1hInvitado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 2 H Invitado</ion-label>
+                <ion-input type="number" name="tarifa2hInvitado" formControlName="tarifa2hInvitado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 3 H Invitado</ion-label>
+                <ion-input type="number" name="tarifa3hInvitado" formControlName="tarifa3hInvitado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 4 H Invitado</ion-label>
+                <ion-input type="number" name="tarifa4hInvitado" formControlName="tarifa4hInvitado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 5 H Invitado</ion-label>
+                <ion-input type="number" name="tarifa5hInvitado" formControlName="tarifa5hInvitado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 6 H Invitado</ion-label>
+                <ion-input type="number" name="tarifa6hInvitado" formControlName="tarifa6hInvitado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 7 H Invitado</ion-label>
+                <ion-input type="number" name="tarifa7hInvitado" formControlName="tarifa7hInvitado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Tarifa 8 H Invitado</ion-label>
+                <ion-input type="number" name="tarifa8hInvitado" formControlName="tarifa8hInvitado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Impuesto</ion-label>
+                <ion-select formControlName="impuesto" id="field_impuesto" >
+                        <ion-select-option value="IVA19">{{'Impuestod.IVA19' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA6">{{'Impuestod.IVA6' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA0">{{'Impuestod.IVA0' | translate}}</ion-select-option>
+                        <ion-select-option value="ICO">{{'Impuestod.ICO' | translate}}</ion-select-option>
+                        <ion-select-option value="IPOCONSUMO8">{{'Impuestod.IPOCONSUMO8' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Video</ion-label>
+                <ion-input type="text" name="video" formControlName="video"></ion-input>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + espacioLibre.imagen1ContentType + ';base64,' + espacioLibre.imagen1" style="max-height: 100px;" *ngIf="espacioLibre?.imagen1" alt="espacioLibre image"/>
+                    <div *ngIf="espacioLibre.imagen1">
+                        <p>{{espacioLibre.imagen1ContentType}}, {{byteSize(espacioLibre.imagen1)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen1', 'imagen1ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, espacioLibre, 'imagen1', true)" accept="image/*"/>
+                    <ion-button *ngIf="!espacioLibre?.imagen1" (click)="getPicture('imagen1')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + espacioLibre.imagen2ContentType + ';base64,' + espacioLibre.imagen2" style="max-height: 100px;" *ngIf="espacioLibre?.imagen2" alt="espacioLibre image"/>
+                    <div *ngIf="espacioLibre.imagen2">
+                        <p>{{espacioLibre.imagen2ContentType}}, {{byteSize(espacioLibre.imagen2)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen2', 'imagen2ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, espacioLibre, 'imagen2', true)" accept="image/*"/>
+                    <ion-button *ngIf="!espacioLibre?.imagen2" (click)="getPicture('imagen2')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + espacioLibre.imagen3ContentType + ';base64,' + espacioLibre.imagen3" style="max-height: 100px;" *ngIf="espacioLibre?.imagen3" alt="espacioLibre image"/>
+                    <div *ngIf="espacioLibre.imagen3">
+                        <p>{{espacioLibre.imagen3ContentType}}, {{byteSize(espacioLibre.imagen3)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen3', 'imagen3ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, espacioLibre, 'imagen3', true)" accept="image/*"/>
+                    <ion-button *ngIf="!espacioLibre?.imagen3" (click)="getPicture('imagen3')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + espacioLibre.imagen4ContentType + ';base64,' + espacioLibre.imagen4" style="max-height: 100px;" *ngIf="espacioLibre?.imagen4" alt="espacioLibre image"/>
+                    <div *ngIf="espacioLibre.imagen4">
+                        <p>{{espacioLibre.imagen4ContentType}}, {{byteSize(espacioLibre.imagen4)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen4', 'imagen4ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, espacioLibre, 'imagen4', true)" accept="image/*"/>
+                    <ion-button *ngIf="!espacioLibre?.imagen4" (click)="getPicture('imagen4')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + espacioLibre.imagen5ContentType + ';base64,' + espacioLibre.imagen5" style="max-height: 100px;" *ngIf="espacioLibre?.imagen5" alt="espacioLibre image"/>
+                    <div *ngIf="espacioLibre.imagen5">
+                        <p>{{espacioLibre.imagen5ContentType}}, {{byteSize(espacioLibre.imagen5)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen5', 'imagen5ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, espacioLibre, 'imagen5', true)" accept="image/*"/>
+                    <ion-button *ngIf="!espacioLibre?.imagen5" (click)="getPicture('imagen5')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + espacioLibre.imagen6ContentType + ';base64,' + espacioLibre.imagen6" style="max-height: 100px;" *ngIf="espacioLibre?.imagen6" alt="espacioLibre image"/>
+                    <div *ngIf="espacioLibre.imagen6">
+                        <p>{{espacioLibre.imagen6ContentType}}, {{byteSize(espacioLibre.imagen6)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen6', 'imagen6ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, espacioLibre, 'imagen6', true)" accept="image/*"/>
+                    <ion-button *ngIf="!espacioLibre?.imagen6" (click)="getPicture('imagen6')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <ion-label>Sede</ion-label>
+                <ion-select id="field_sede" formControlName="sede" [compareWith]="compareSedes">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="sedesOption" *ngFor="let sedesOption of sedes; trackBy: trackSedesById">{{sedesOption.nombreSede}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Espacio</ion-label>
+                <ion-select id="field_tipoEspacio" formControlName="tipoEspacio" [compareWith]="compareTipoEspacio">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="tipoEspacioOption" *ngFor="let tipoEspacioOption of tipoEspacios; trackBy: trackTipoEspacioById">{{tipoEspacioOption.tipoEspacio}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

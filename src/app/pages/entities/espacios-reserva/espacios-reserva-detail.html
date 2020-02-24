@@ -1,0 +1,193 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Espacios Reserva
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.nombre}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Facilidades</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.facilidades}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Capacidad</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.capacidad}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Apertura</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.apertura}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Cierre</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.cierre}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Wifi</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.wifi}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.video}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="espaciosReserva.imagen1">
+                    <a (click)="openFile(espaciosReserva.imagen1ContentType, espaciosReserva.imagen1)">
+                        <img [src]="'data:' + espaciosReserva.imagen1ContentType + ';base64,' + espaciosReserva.imagen1" style="max-width: 100%;" alt="espaciosReserva image"/>
+                    </a>
+                    {{espaciosReserva.imagen1ContentType}}, {{byteSize(espaciosReserva.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="espaciosReserva.imagen2">
+                    <a (click)="openFile(espaciosReserva.imagen2ContentType, espaciosReserva.imagen2)">
+                        <img [src]="'data:' + espaciosReserva.imagen2ContentType + ';base64,' + espaciosReserva.imagen2" style="max-width: 100%;" alt="espaciosReserva image"/>
+                    </a>
+                    {{espaciosReserva.imagen2ContentType}}, {{byteSize(espaciosReserva.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 3</ion-label>
+            <div item-content>
+                <div *ngIf="espaciosReserva.imagen3">
+                    <a (click)="openFile(espaciosReserva.imagen3ContentType, espaciosReserva.imagen3)">
+                        <img [src]="'data:' + espaciosReserva.imagen3ContentType + ';base64,' + espaciosReserva.imagen3" style="max-width: 100%;" alt="espaciosReserva image"/>
+                    </a>
+                    {{espaciosReserva.imagen3ContentType}}, {{byteSize(espaciosReserva.imagen3)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 4</ion-label>
+            <div item-content>
+                <div *ngIf="espaciosReserva.imagen4">
+                    <a (click)="openFile(espaciosReserva.imagen4ContentType, espaciosReserva.imagen4)">
+                        <img [src]="'data:' + espaciosReserva.imagen4ContentType + ';base64,' + espaciosReserva.imagen4" style="max-width: 100%;" alt="espaciosReserva image"/>
+                    </a>
+                    {{espaciosReserva.imagen4ContentType}}, {{byteSize(espaciosReserva.imagen4)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 5</ion-label>
+            <div item-content>
+                <div *ngIf="espaciosReserva.imagen5">
+                    <a (click)="openFile(espaciosReserva.imagen5ContentType, espaciosReserva.imagen5)">
+                        <img [src]="'data:' + espaciosReserva.imagen5ContentType + ';base64,' + espaciosReserva.imagen5" style="max-width: 100%;" alt="espaciosReserva image"/>
+                    </a>
+                    {{espaciosReserva.imagen5ContentType}}, {{byteSize(espaciosReserva.imagen5)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 6</ion-label>
+            <div item-content>
+                <div *ngIf="espaciosReserva.imagen6">
+                    <a (click)="openFile(espaciosReserva.imagen6ContentType, espaciosReserva.imagen6)">
+                        <img [src]="'data:' + espaciosReserva.imagen6ContentType + ';base64,' + espaciosReserva.imagen6" style="max-width: 100%;" alt="espaciosReserva image"/>
+                    </a>
+                    {{espaciosReserva.imagen6ContentType}}, {{byteSize(espaciosReserva.imagen6)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 1 Hora</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.tarifa1Hora}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 2 Hora</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.tarifa2Hora}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 3 Hora</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.tarifa3Hora}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 4 Hora</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.tarifa4Hora}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 5 Hora</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.tarifa5Hora}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 6 Hora</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.tarifa6Hora}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 7 Hora</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.tarifa7Hora}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tarifa 8 Hora</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.tarifa8Hora}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{espaciosReserva.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Sede</ion-label>
+            <div item-content *ngIf="espaciosReserva.sede">
+                <a>{{espaciosReserva.sede?.nombreSede}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(espaciosReserva)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(espaciosReserva)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

@@ -1,0 +1,103 @@
+{
+    "name": "VideoBlog",
+    "fields": [
+        {
+            "fieldName": "titulo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipoContenido",
+            "fieldType": "Categoriad",
+            "fieldValues": "GENERAL,DE_GRUPO,CORPORATIVO,INSTITUCIONAL,INTERNO"
+        },
+        {
+            "fieldName": "contenido",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "video",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estadoPublicacion",
+            "fieldType": "EstadoPublicaciond",
+            "fieldValues": "BORRADOR,EN_REVISION,APROBADO,PUBLICADO,RECHAZADO"
+        },
+        {
+            "fieldName": "tipoConsumo",
+            "fieldType": "TipoConsumod",
+            "fieldValues": "GRATIS,PAGO"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "impuesto",
+            "fieldType": "Impuestod",
+            "fieldValues": "IVA19,IVA6,IVA0,ICO,IPOCONSUMO8"
+        },
+        {
+            "fieldName": "vistas",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "meGusta",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "seguidores",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "videoBlog",
+            "relationshipName": "idUser",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "categoriaContenidos",
+            "otherEntityRelationshipName": "videoBlog",
+            "relationshipName": "categoriaBlog",
+            "otherEntityField": "categoria"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "comentarioVideoBlog",
+            "otherEntityRelationshipName": "videoBlog",
+            "relationshipName": "comentarioVideoBlog"
+        }
+    ],
+    "changelogDate": "20191022215107",
+    "entityTableName": "video_blog",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

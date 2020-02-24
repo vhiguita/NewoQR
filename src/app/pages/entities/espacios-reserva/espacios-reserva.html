@@ -1,0 +1,88 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Espacios Reservas
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let espaciosReserva of espaciosReservas; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(espaciosReserva)">
+              <ion-label text-wrap>
+                <p>{{espaciosReserva.nombre}}</p>
+                <p>{{espaciosReserva.descripcion}}</p>
+                <p>{{espaciosReserva.facilidades}}</p>
+                <p>{{espaciosReserva.capacidad}}</p>
+                <p>{{espaciosReserva.apertura}}</p>
+                <p>{{espaciosReserva.cierre}}</p>
+                <p>{{espaciosReserva.wifi}}</p>
+                <p>{{espaciosReserva.video}}</p>
+                <ion-avatar *ngIf="espaciosReserva.imagen1">
+                    <img [src]="'data:' + espaciosReserva.imagen1ContentType + ';base64,' + espaciosReserva.imagen1" />
+                    <p *ngIf="espaciosReserva.imagen1">{{espaciosReserva.imagen1ContentType}}, {{byteSize(espaciosReserva.imagen1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espaciosReserva.imagen2">
+                    <img [src]="'data:' + espaciosReserva.imagen2ContentType + ';base64,' + espaciosReserva.imagen2" />
+                    <p *ngIf="espaciosReserva.imagen2">{{espaciosReserva.imagen2ContentType}}, {{byteSize(espaciosReserva.imagen2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espaciosReserva.imagen3">
+                    <img [src]="'data:' + espaciosReserva.imagen3ContentType + ';base64,' + espaciosReserva.imagen3" />
+                    <p *ngIf="espaciosReserva.imagen3">{{espaciosReserva.imagen3ContentType}}, {{byteSize(espaciosReserva.imagen3)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espaciosReserva.imagen4">
+                    <img [src]="'data:' + espaciosReserva.imagen4ContentType + ';base64,' + espaciosReserva.imagen4" />
+                    <p *ngIf="espaciosReserva.imagen4">{{espaciosReserva.imagen4ContentType}}, {{byteSize(espaciosReserva.imagen4)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espaciosReserva.imagen5">
+                    <img [src]="'data:' + espaciosReserva.imagen5ContentType + ';base64,' + espaciosReserva.imagen5" />
+                    <p *ngIf="espaciosReserva.imagen5">{{espaciosReserva.imagen5ContentType}}, {{byteSize(espaciosReserva.imagen5)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="espaciosReserva.imagen6">
+                    <img [src]="'data:' + espaciosReserva.imagen6ContentType + ';base64,' + espaciosReserva.imagen6" />
+                    <p *ngIf="espaciosReserva.imagen6">{{espaciosReserva.imagen6ContentType}}, {{byteSize(espaciosReserva.imagen6)}}</p>
+                </ion-avatar>
+                <p>{{espaciosReserva.tarifa1Hora}}</p>
+                <p>{{espaciosReserva.tarifa2Hora}}</p>
+                <p>{{espaciosReserva.tarifa3Hora}}</p>
+                <p>{{espaciosReserva.tarifa4Hora}}</p>
+                <p>{{espaciosReserva.tarifa5Hora}}</p>
+                <p>{{espaciosReserva.tarifa6Hora}}</p>
+                <p>{{espaciosReserva.tarifa7Hora}}</p>
+                <p>{{espaciosReserva.tarifa8Hora}}</p>
+                <!-- todo: special handling for translating enum - {{'Impuestod.' + espaciosReserva.impuesto}}" -->
+                <p>{{espaciosReserva.impuesto}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, espaciosReserva)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(espaciosReserva)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!espaciosReservas?.length">
+        <ion-label>
+            No Espacios Reservas found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

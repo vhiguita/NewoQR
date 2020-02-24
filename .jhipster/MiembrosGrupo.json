@@ -1,0 +1,30 @@
+{
+    "name": "MiembrosGrupo",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "miembrosGrupo",
+            "relationshipName": "miembro",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "grupos",
+            "otherEntityRelationshipName": "miembrosGrupo",
+            "relationshipName": "grupo",
+            "otherEntityField": "nombreGrupo"
+        }
+    ],
+    "changelogDate": "20191022215117",
+    "entityTableName": "miembros_grupo",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

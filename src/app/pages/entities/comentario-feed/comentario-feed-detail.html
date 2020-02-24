@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Comentario Feed
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Comentario</ion-label>
+            <div item-content>
+                <span>{{comentarioFeed.comentario}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha</ion-label>
+            <div item-content>
+                <span>{{comentarioFeed.fecha | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Me Gusta</ion-label>
+            <div item-content>
+                <span>{{comentarioFeed.meGusta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Seguir</ion-label>
+            <div item-content>
+                <span>{{comentarioFeed.seguir}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Feed</ion-label>
+            <div item-content *ngIf="comentarioFeed.feed">
+                <a>{{comentarioFeed.feed?.id}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Id User</ion-label>
+            <div item-content>{{comentarioFeed.idUser?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(comentarioFeed)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(comentarioFeed)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

@@ -1,0 +1,126 @@
+{
+    "name": "RecursosFisicos",
+    "fields": [
+        {
+            "fieldName": "recurso",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoRecursod",
+            "fieldValues": "Tiempo,Cantidad",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unidadMedida",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "valorUnitario",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "valor1H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor2H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor3H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor4H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor5H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor6H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor7H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor8H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor9H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor10H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor11H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor12H",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "impuesto",
+            "fieldType": "Impuestod",
+            "fieldValues": "IVA19,IVA6,IVA0,ICO,IPOCONSUMO8"
+        },
+        {
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "video",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "sedes",
+            "otherEntityRelationshipName": "recursosFisicos",
+            "relationshipName": "sede",
+            "otherEntityField": "nombreSede"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoRecurso",
+            "otherEntityRelationshipName": "recursosFisicos",
+            "relationshipName": "tipoRecurso",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20191022215118",
+    "entityTableName": "recursos_fisicos",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

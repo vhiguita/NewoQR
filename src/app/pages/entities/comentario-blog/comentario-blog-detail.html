@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Comentario Blog
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Comentario</ion-label>
+            <div item-content>
+                <span>{{comentarioBlog.comentario}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha</ion-label>
+            <div item-content>
+                <span>{{comentarioBlog.fecha | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Me Gusta</ion-label>
+            <div item-content>
+                <span>{{comentarioBlog.meGusta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Seguir</ion-label>
+            <div item-content>
+                <span>{{comentarioBlog.seguir}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Blog</ion-label>
+            <div item-content *ngIf="comentarioBlog.blog">
+                <a>{{comentarioBlog.blog?.id}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Id User</ion-label>
+            <div item-content>{{comentarioBlog.idUser?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(comentarioBlog)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(comentarioBlog)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

@@ -1,0 +1,159 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Grupos
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nombre Grupo</ion-label>
+                <ion-input type="text" name="nombreGrupo" formControlName="nombreGrupo"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Instagram</ion-label>
+                <ion-input type="text" name="instagram" formControlName="instagram"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Facebook</ion-label>
+                <ion-input type="text" name="facebook" formControlName="facebook"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Twiter</ion-label>
+                <ion-input type="text" name="twiter" formControlName="twiter"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Linked In</ion-label>
+                <ion-input type="text" name="linkedIn" formControlName="linkedIn"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Grupo</ion-label>
+                <ion-select formControlName="tipoGrupo" id="field_tipoGrupo" >
+                        <ion-select-option value="INTERNO">{{'TipoGrupod.INTERNO' | translate}}</ion-select-option>
+                        <ion-select-option value="EXTERNO">{{'TipoGrupod.EXTERNO' | translate}}</ion-select-option>
+                        <ion-select-option value="PATROCINADO">{{'TipoGrupod.PATROCINADO' | translate}}</ion-select-option>
+                        <ion-select-option value="PUBLICO">{{'TipoGrupod.PUBLICO' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Consumo</ion-label>
+                <ion-select formControlName="tipoConsumo" id="field_tipoConsumo" >
+                        <ion-select-option value="GRATIS">{{'TipoConsumod.GRATIS' | translate}}</ion-select-option>
+                        <ion-select-option value="PAGO">{{'TipoConsumod.PAGO' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor Suscripcion</ion-label>
+                <ion-input type="number" name="valorSuscripcion" formControlName="valorSuscripcion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Impuesto</ion-label>
+                <ion-select formControlName="impuesto" id="field_impuesto" >
+                        <ion-select-option value="IVA19">{{'Impuestod.IVA19' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA6">{{'Impuestod.IVA6' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA0">{{'Impuestod.IVA0' | translate}}</ion-select-option>
+                        <ion-select-option value="ICO">{{'Impuestod.ICO' | translate}}</ion-select-option>
+                        <ion-select-option value="IPOCONSUMO8">{{'Impuestod.IPOCONSUMO8' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-textarea placeholder="Reglas Grupo" formControlName="reglasGrupo" id="field_reglasGrupo"></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <div *ngIf="grupos.audio">
+                        <p>{{grupos.audioContentType}}, {{byteSize(grupos.audio)}}</p>
+                        <ion-button color="danger" (click)="grupos.audio=null;grupos.audioContentType=null;">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, grupos, 'audio', false)"/>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <div *ngIf="grupos.video">
+                        <p>{{grupos.videoContentType}}, {{byteSize(grupos.video)}}</p>
+                        <ion-button color="danger" (click)="grupos.video=null;grupos.videoContentType=null;">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, grupos, 'video', false)"/>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + grupos.imagen1ContentType + ';base64,' + grupos.imagen1" style="max-height: 100px;" *ngIf="grupos?.imagen1" alt="grupos image"/>
+                    <div *ngIf="grupos.imagen1">
+                        <p>{{grupos.imagen1ContentType}}, {{byteSize(grupos.imagen1)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen1', 'imagen1ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, grupos, 'imagen1', true)" accept="image/*"/>
+                    <ion-button *ngIf="!grupos?.imagen1" (click)="getPicture('imagen1')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + grupos.imagen2ContentType + ';base64,' + grupos.imagen2" style="max-height: 100px;" *ngIf="grupos?.imagen2" alt="grupos image"/>
+                    <div *ngIf="grupos.imagen2">
+                        <p>{{grupos.imagen2ContentType}}, {{byteSize(grupos.imagen2)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen2', 'imagen2ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, grupos, 'imagen2', true)" accept="image/*"/>
+                    <ion-button *ngIf="!grupos?.imagen2" (click)="getPicture('imagen2')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + grupos.bannerContentType + ';base64,' + grupos.banner" style="max-height: 100px;" *ngIf="grupos?.banner" alt="grupos image"/>
+                    <div *ngIf="grupos.banner">
+                        <p>{{grupos.bannerContentType}}, {{byteSize(grupos.banner)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('banner', 'bannerContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, grupos, 'banner', true)" accept="image/*"/>
+                    <ion-button *ngIf="!grupos?.banner" (click)="getPicture('banner')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <ion-label>Categoria Grupo</ion-label>
+                <ion-select id="field_categoriaGrupo" formControlName="categoriaGrupo" [compareWith]="compareCategoriaContenidos">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="categoriaContenidosOption" *ngFor="let categoriaContenidosOption of categoriaContenidos; trackBy: trackCategoriaContenidosById">{{categoriaContenidosOption.categoria}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

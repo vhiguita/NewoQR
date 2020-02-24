@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Margen Newo Productos
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Porcentaje Margen</ion-label>
+            <div item-content>
+                <span>{{margenNewoProductos.porcentajeMargen}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Producto</ion-label>
+            <div item-content *ngIf="margenNewoProductos.producto">
+                <a>{{margenNewoProductos.producto?.nombreProducto}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(margenNewoProductos)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(margenNewoProductos)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

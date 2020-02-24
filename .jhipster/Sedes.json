@@ -1,0 +1,110 @@
+{
+    "name": "Sedes",
+    "fields": [
+        {
+            "fieldName": "nombreSede",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "coordenadaX",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "coordenadaY",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "direccion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "telefonoComunidad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "minlength"
+            ],
+            "fieldValidateRulesMaxlength": 12,
+            "fieldValidateRulesMinlength": 7
+        },
+        {
+            "fieldName": "telefonoNegocio",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "minlength"
+            ],
+            "fieldValidateRulesMaxlength": 12,
+            "fieldValidateRulesMinlength": 7
+        },
+        {
+            "fieldName": "descripcionSede",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "horario",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "video",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imagen1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen3",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen4",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen5",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "imagen6",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "ciudad",
+            "otherEntityRelationshipName": "sedes",
+            "relationshipName": "ciudad",
+            "otherEntityField": "nombreCiudad"
+        }
+    ],
+    "changelogDate": "20191022215047",
+    "entityTableName": "sedes",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

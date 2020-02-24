@@ -1,0 +1,145 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Sedes
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Nombre Sede</ion-label>
+            <div item-content>
+                <span>{{sedes.nombreSede}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Coordenada X</ion-label>
+            <div item-content>
+                <span>{{sedes.coordenadaX}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Coordenada Y</ion-label>
+            <div item-content>
+                <span>{{sedes.coordenadaY}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Direccion</ion-label>
+            <div item-content>
+                <span>{{sedes.direccion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Telefono Comunidad</ion-label>
+            <div item-content>
+                <span>{{sedes.telefonoComunidad}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Telefono Negocio</ion-label>
+            <div item-content>
+                <span>{{sedes.telefonoNegocio}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion Sede</ion-label>
+            <div item-content>
+                <span>{{sedes.descripcionSede}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Horario</ion-label>
+            <div item-content>
+                <span>{{sedes.horario}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <span>{{sedes.video}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="sedes.imagen1">
+                    <a (click)="openFile(sedes.imagen1ContentType, sedes.imagen1)">
+                        <img [src]="'data:' + sedes.imagen1ContentType + ';base64,' + sedes.imagen1" style="max-width: 100%;" alt="sedes image"/>
+                    </a>
+                    {{sedes.imagen1ContentType}}, {{byteSize(sedes.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="sedes.imagen2">
+                    <a (click)="openFile(sedes.imagen2ContentType, sedes.imagen2)">
+                        <img [src]="'data:' + sedes.imagen2ContentType + ';base64,' + sedes.imagen2" style="max-width: 100%;" alt="sedes image"/>
+                    </a>
+                    {{sedes.imagen2ContentType}}, {{byteSize(sedes.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 3</ion-label>
+            <div item-content>
+                <div *ngIf="sedes.imagen3">
+                    <a (click)="openFile(sedes.imagen3ContentType, sedes.imagen3)">
+                        <img [src]="'data:' + sedes.imagen3ContentType + ';base64,' + sedes.imagen3" style="max-width: 100%;" alt="sedes image"/>
+                    </a>
+                    {{sedes.imagen3ContentType}}, {{byteSize(sedes.imagen3)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 4</ion-label>
+            <div item-content>
+                <div *ngIf="sedes.imagen4">
+                    <a (click)="openFile(sedes.imagen4ContentType, sedes.imagen4)">
+                        <img [src]="'data:' + sedes.imagen4ContentType + ';base64,' + sedes.imagen4" style="max-width: 100%;" alt="sedes image"/>
+                    </a>
+                    {{sedes.imagen4ContentType}}, {{byteSize(sedes.imagen4)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 5</ion-label>
+            <div item-content>
+                <div *ngIf="sedes.imagen5">
+                    <a (click)="openFile(sedes.imagen5ContentType, sedes.imagen5)">
+                        <img [src]="'data:' + sedes.imagen5ContentType + ';base64,' + sedes.imagen5" style="max-width: 100%;" alt="sedes image"/>
+                    </a>
+                    {{sedes.imagen5ContentType}}, {{byteSize(sedes.imagen5)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 6</ion-label>
+            <div item-content>
+                <div *ngIf="sedes.imagen6">
+                    <a (click)="openFile(sedes.imagen6ContentType, sedes.imagen6)">
+                        <img [src]="'data:' + sedes.imagen6ContentType + ';base64,' + sedes.imagen6" style="max-width: 100%;" alt="sedes image"/>
+                    </a>
+                    {{sedes.imagen6ContentType}}, {{byteSize(sedes.imagen6)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Ciudad</ion-label>
+            <div item-content *ngIf="sedes.ciudad">
+                <a>{{sedes.ciudad?.nombreCiudad}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(sedes)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(sedes)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

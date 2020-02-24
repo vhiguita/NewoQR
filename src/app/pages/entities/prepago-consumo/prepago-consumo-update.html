@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Prepago Consumo
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Aporte</ion-label>
+                <ion-input type="number" name="aporte" formControlName="aporte"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Saldo Actual</ion-label>
+                <ion-input type="number" name="saldoActual" formControlName="saldoActual"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Fecha Registro</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="fechaRegistro" id="field_fechaRegistro"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label>Fecha Saldo Actual</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="fechaSaldoActual" id="field_fechaSaldoActual"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label>Miembro</ion-label>
+                <ion-select id="field_miembro" formControlName="miembro" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Prepago</ion-label>
+                <ion-select id="field_tipoPrepago" formControlName="tipoPrepago" [compareWith]="compareTipoPrepagoConsumo">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="tipoPrepagoConsumoOption" *ngFor="let tipoPrepagoConsumoOption of tipoPrepagoConsumos; trackBy: trackTipoPrepagoConsumoById">{{tipoPrepagoConsumoOption.nombre}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

@@ -1,0 +1,28 @@
+{
+    "name": "MargenNewoProductos",
+    "fields": [
+        {
+            "fieldName": "porcentajeMargen",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "productosServicios",
+            "otherEntityRelationshipName": "margenNewoProductos",
+            "relationshipName": "producto",
+            "otherEntityField": "nombreProducto"
+        }
+    ],
+    "changelogDate": "20191022215126",
+    "entityTableName": "margen_newo_productos",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

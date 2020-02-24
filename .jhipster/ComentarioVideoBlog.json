@@ -1,0 +1,51 @@
+{
+    "name": "ComentarioVideoBlog",
+    "fields": [
+        {
+            "fieldName": "comentario",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "meGusta",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "seguir",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "videoBlog",
+            "otherEntityRelationshipName": "comentarioVideoBlog",
+            "relationshipName": "videoBlog",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "comentarioVideoBlog",
+            "relationshipName": "idUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191022215109",
+    "entityTableName": "comentario_video_blog",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

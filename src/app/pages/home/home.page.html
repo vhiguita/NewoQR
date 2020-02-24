@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ 'WELCOME_TITLE' | translate }}, {{account?.firstName}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" id="logout">
+        {{ 'LOGOUT_TITLE' | translate }}
+        <ion-icon slot="end" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form (submit)="doLogin()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Codigo QR</ion-label>
+        <ion-input type="string" name="codigoQR" [(ngModel)]="user.QRCode"></ion-input>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-label position="floating">Servicio</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+      </ion-item> -->
+      <ion-row padding>
+        <ion-col>
+          <ion-button expand="block" type="submit" color="primary" id="login">Consultar</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row padding>
+        <ion-col>
+          <ion-label [hidden]="b1" class="t1">SI</ion-label>
+          <ion-label [hidden]="b2" class="t2">NO</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
+
+</ion-content>

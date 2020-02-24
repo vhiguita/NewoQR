@@ -1,0 +1,30 @@
+{
+    "name": "MiembrosEquipoEmpresas",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "equipoEmpresas",
+            "otherEntityRelationshipName": "miembrosEquipoEmpresas",
+            "relationshipName": "equipo",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "miembrosEquipoEmpresas",
+            "relationshipName": "miembro",
+            "otherEntityField": "login"
+        }
+    ],
+    "changelogDate": "20191022215058",
+    "entityTableName": "miembros_equipo_empresas",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

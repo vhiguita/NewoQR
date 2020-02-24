@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Comentario Video Blogs
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let comentarioVideoBlog of comentarioVideoBlogs; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(comentarioVideoBlog)">
+              <ion-label text-wrap>
+                <p>{{comentarioVideoBlog.comentario}}</p>
+                <p>{{comentarioVideoBlog.fecha | date:'medium'}}</p>
+                <p>{{comentarioVideoBlog.meGusta}}</p>
+                <p>{{comentarioVideoBlog.seguir}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, comentarioVideoBlog)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(comentarioVideoBlog)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!comentarioVideoBlogs?.length">
+        <ion-label>
+            No Comentario Video Blogs found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

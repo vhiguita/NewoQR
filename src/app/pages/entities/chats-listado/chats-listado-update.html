@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Chats Listado
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Descripcion</ion-label>
+                <ion-input type="text" name="descripcion" formControlName="descripcion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Estatus</ion-label>
+                <ion-select formControlName="estatus" id="field_estatus" >
+                        <ion-select-option value="EnLinea">{{'Estatusd.EnLinea' | translate}}</ion-select-option>
+                        <ion-select-option value="Desconectado">{{'Estatusd.Desconectado' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Count</ion-label>
+                <ion-input type="number" name="count" formControlName="count"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Badge</ion-label>
+                <ion-input type="number" name="badge" formControlName="badge"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Time</ion-label>
+                <ion-input type="text" name="time" formControlName="time"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Send Time</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY" formControlName="sendTime" id="field_sendTime"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label>Grupo</ion-label>
+                <ion-checkbox formControlName="grupo"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Propietario</ion-label>
+                <ion-select id="field_propietario" formControlName="propietario" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Destinatario</ion-label>
+                <ion-select id="field_destinatario" formControlName="destinatario" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

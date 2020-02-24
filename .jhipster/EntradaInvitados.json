@@ -1,0 +1,43 @@
+{
+    "name": "EntradaInvitados",
+    "fields": [
+        {
+            "fieldName": "registroFecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "salida",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "tiempoMaximo",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "sedes",
+            "otherEntityRelationshipName": "entradaInvitados",
+            "relationshipName": "sede",
+            "otherEntityField": "nombreSede"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "invitados",
+            "otherEntityRelationshipName": "entradaInvitados",
+            "relationshipName": "invitado",
+            "otherEntityField": "identificacion"
+        }
+    ],
+    "changelogDate": "20191022215046",
+    "entityTableName": "entrada_invitados",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

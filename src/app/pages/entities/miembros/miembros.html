@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Miembros
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let miembros of miembros; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(miembros)">
+              <ion-label text-wrap>
+                <p>{{miembros.idUser}}</p>
+                <p>{{miembros.nombre}}</p>
+                <p>{{miembros.apellido}}</p>
+                <p>{{miembros.login}}</p>
+                <!-- todo: special handling for translating enum - {{'TipoDocumentod.' + miembros.tipoDocumento}}" -->
+                <p>{{miembros.tipoDocumento}}</p>
+                <p>{{miembros.identificacion}}</p>
+                <p>{{miembros.fechaNacimiento | date:'mediumDate'}}</p>
+                <p>{{miembros.fechaRegistro | date:'medium'}}</p>
+                <!-- todo: special handling for translating enum - {{'Generod.' + miembros.genero}}" -->
+                <p>{{miembros.genero}}</p>
+                <p>{{miembros.celular}}</p>
+                <p>{{miembros.biografia}}</p>
+                <ion-avatar *ngIf="miembros.foto1">
+                    <img [src]="'data:' + miembros.foto1ContentType + ';base64,' + miembros.foto1" />
+                    <p *ngIf="miembros.foto1">{{miembros.foto1ContentType}}, {{byteSize(miembros.foto1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="miembros.foto2">
+                    <img [src]="'data:' + miembros.foto2ContentType + ';base64,' + miembros.foto2" />
+                    <p *ngIf="miembros.foto2">{{miembros.foto2ContentType}}, {{byteSize(miembros.foto2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="miembros.foto3">
+                    <img [src]="'data:' + miembros.foto3ContentType + ';base64,' + miembros.foto3" />
+                    <p *ngIf="miembros.foto3">{{miembros.foto3ContentType}}, {{byteSize(miembros.foto3)}}</p>
+                </ion-avatar>
+                <p>{{miembros.conocimientosQueDomina}}</p>
+                <p>{{miembros.temasDeInteres}}</p>
+                <p>{{miembros.facebook}}</p>
+                <p>{{miembros.instagram}}</p>
+                <p>{{miembros.idGoogle}}</p>
+                <p>{{miembros.twiter}}</p>
+                <p>{{miembros.derechosDeCompra}}</p>
+                <p>{{miembros.accesoIlimitado}}</p>
+                <p>{{miembros.aliado}}</p>
+                <p>{{miembros.host}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, miembros)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(miembros)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!miembros?.length">
+        <ion-label>
+            No Miembros found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

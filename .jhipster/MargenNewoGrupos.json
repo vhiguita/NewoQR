@@ -1,0 +1,28 @@
+{
+    "name": "MargenNewoGrupos",
+    "fields": [
+        {
+            "fieldName": "porcentajeMargen",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "grupos",
+            "otherEntityRelationshipName": "margenNewoGrupos",
+            "relationshipName": "grupo",
+            "otherEntityField": "nombreGrupo"
+        }
+    ],
+    "changelogDate": "20191022215124",
+    "entityTableName": "margen_newo_grupos",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,188 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Miembros
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Id User</ion-label>
+            <div item-content>
+                <span>{{miembros.idUser}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Nombre</ion-label>
+            <div item-content>
+                <span>{{miembros.nombre}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Apellido</ion-label>
+            <div item-content>
+                <span>{{miembros.apellido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Login</ion-label>
+            <div item-content>
+                <span>{{miembros.login}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Documento</ion-label>
+            <div item-content>
+                <span>{{miembros.tipoDocumento}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Identificacion</ion-label>
+            <div item-content>
+                <span>{{miembros.identificacion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha Nacimiento</ion-label>
+            <div item-content>
+                <span>{{miembros.fechaNacimiento | date:'mediumDate'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha Registro</ion-label>
+            <div item-content>
+                <span>{{miembros.fechaRegistro | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Genero</ion-label>
+            <div item-content>
+                <span>{{miembros.genero}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Celular</ion-label>
+            <div item-content>
+                <span>{{miembros.celular}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Biografia</ion-label>
+            <div item-content>
+                <span>{{miembros.biografia}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Foto 1</ion-label>
+            <div item-content>
+                <div *ngIf="miembros.foto1">
+                    <a (click)="openFile(miembros.foto1ContentType, miembros.foto1)">
+                        <img [src]="'data:' + miembros.foto1ContentType + ';base64,' + miembros.foto1" style="max-width: 100%;" alt="miembros image"/>
+                    </a>
+                    {{miembros.foto1ContentType}}, {{byteSize(miembros.foto1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Foto 2</ion-label>
+            <div item-content>
+                <div *ngIf="miembros.foto2">
+                    <a (click)="openFile(miembros.foto2ContentType, miembros.foto2)">
+                        <img [src]="'data:' + miembros.foto2ContentType + ';base64,' + miembros.foto2" style="max-width: 100%;" alt="miembros image"/>
+                    </a>
+                    {{miembros.foto2ContentType}}, {{byteSize(miembros.foto2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Foto 3</ion-label>
+            <div item-content>
+                <div *ngIf="miembros.foto3">
+                    <a (click)="openFile(miembros.foto3ContentType, miembros.foto3)">
+                        <img [src]="'data:' + miembros.foto3ContentType + ';base64,' + miembros.foto3" style="max-width: 100%;" alt="miembros image"/>
+                    </a>
+                    {{miembros.foto3ContentType}}, {{byteSize(miembros.foto3)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Conocimientos Que Domina</ion-label>
+            <div item-content>
+                <span>{{miembros.conocimientosQueDomina}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Temas De Interes</ion-label>
+            <div item-content>
+                <span>{{miembros.temasDeInteres}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Facebook</ion-label>
+            <div item-content>
+                <span>{{miembros.facebook}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Instagram</ion-label>
+            <div item-content>
+                <span>{{miembros.instagram}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Id Google</ion-label>
+            <div item-content>
+                <span>{{miembros.idGoogle}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Twiter</ion-label>
+            <div item-content>
+                <span>{{miembros.twiter}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Derechos De Compra</ion-label>
+            <div item-content>
+                <span>{{miembros.derechosDeCompra}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Acceso Ilimitado</ion-label>
+            <div item-content>
+                <span>{{miembros.accesoIlimitado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Aliado</ion-label>
+            <div item-content>
+                <span>{{miembros.aliado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Host</ion-label>
+            <div item-content>
+                <span>{{miembros.host}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>User</ion-label>
+            <div item-content>{{miembros.user?.id}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Nacionalidad</ion-label>
+            <div item-content *ngIf="miembros.nacionalidad">
+                <a>{{miembros.nacionalidad?.nombrePais}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(miembros)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(miembros)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

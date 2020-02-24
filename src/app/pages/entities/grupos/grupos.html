@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Grupos
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let grupos of grupos; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(grupos)">
+              <ion-label text-wrap>
+                <p>{{grupos.nombreGrupo}}</p>
+                <p>{{grupos.instagram}}</p>
+                <p>{{grupos.facebook}}</p>
+                <p>{{grupos.twiter}}</p>
+                <p>{{grupos.linkedIn}}</p>
+                <!-- todo: special handling for translating enum - {{'TipoGrupod.' + grupos.tipoGrupo}}" -->
+                <p>{{grupos.tipoGrupo}}</p>
+                <!-- todo: special handling for translating enum - {{'TipoConsumod.' + grupos.tipoConsumo}}" -->
+                <p>{{grupos.tipoConsumo}}</p>
+                <p>{{grupos.valorSuscripcion}}</p>
+                <!-- todo: special handling for translating enum - {{'Impuestod.' + grupos.impuesto}}" -->
+                <p>{{grupos.impuesto}}</p>
+                <p>{{grupos.reglasGrupo}}</p>
+                <p>{{grupos.audio}}</p>
+                <p>{{grupos.video}}</p>
+                <ion-avatar *ngIf="grupos.imagen1">
+                    <img [src]="'data:' + grupos.imagen1ContentType + ';base64,' + grupos.imagen1" />
+                    <p *ngIf="grupos.imagen1">{{grupos.imagen1ContentType}}, {{byteSize(grupos.imagen1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="grupos.imagen2">
+                    <img [src]="'data:' + grupos.imagen2ContentType + ';base64,' + grupos.imagen2" />
+                    <p *ngIf="grupos.imagen2">{{grupos.imagen2ContentType}}, {{byteSize(grupos.imagen2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="grupos.banner">
+                    <img [src]="'data:' + grupos.bannerContentType + ';base64,' + grupos.banner" />
+                    <p *ngIf="grupos.banner">{{grupos.bannerContentType}}, {{byteSize(grupos.banner)}}</p>
+                </ion-avatar>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, grupos)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(grupos)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!grupos?.length">
+        <ion-label>
+            No Grupos found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

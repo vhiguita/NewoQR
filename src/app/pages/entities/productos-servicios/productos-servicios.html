@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Productos Servicios
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let productosServicios of productosServicios; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(productosServicios)">
+              <ion-label text-wrap>
+                <p>{{productosServicios.nombreProducto}}</p>
+                <p>{{productosServicios.descripcion}}</p>
+                <p>{{productosServicios.inventariables}}</p>
+                <p>{{productosServicios.valor}}</p>
+                <!-- todo: special handling for translating enum - {{'Impuestod.' + productosServicios.impuesto}}" -->
+                <p>{{productosServicios.impuesto}}</p>
+                <p>{{productosServicios.video}}</p>
+                <ion-avatar *ngIf="productosServicios.imagen1">
+                    <img [src]="'data:' + productosServicios.imagen1ContentType + ';base64,' + productosServicios.imagen1" />
+                    <p *ngIf="productosServicios.imagen1">{{productosServicios.imagen1ContentType}}, {{byteSize(productosServicios.imagen1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="productosServicios.imagen2">
+                    <img [src]="'data:' + productosServicios.imagen2ContentType + ';base64,' + productosServicios.imagen2" />
+                    <p *ngIf="productosServicios.imagen2">{{productosServicios.imagen2ContentType}}, {{byteSize(productosServicios.imagen2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="productosServicios.imagen3">
+                    <img [src]="'data:' + productosServicios.imagen3ContentType + ';base64,' + productosServicios.imagen3" />
+                    <p *ngIf="productosServicios.imagen3">{{productosServicios.imagen3ContentType}}, {{byteSize(productosServicios.imagen3)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="productosServicios.imagen4">
+                    <img [src]="'data:' + productosServicios.imagen4ContentType + ';base64,' + productosServicios.imagen4" />
+                    <p *ngIf="productosServicios.imagen4">{{productosServicios.imagen4ContentType}}, {{byteSize(productosServicios.imagen4)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="productosServicios.imagen5">
+                    <img [src]="'data:' + productosServicios.imagen5ContentType + ';base64,' + productosServicios.imagen5" />
+                    <p *ngIf="productosServicios.imagen5">{{productosServicios.imagen5ContentType}}, {{byteSize(productosServicios.imagen5)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="productosServicios.imagen6">
+                    <img [src]="'data:' + productosServicios.imagen6ContentType + ';base64,' + productosServicios.imagen6" />
+                    <p *ngIf="productosServicios.imagen6">{{productosServicios.imagen6ContentType}}, {{byteSize(productosServicios.imagen6)}}</p>
+                </ion-avatar>
+                <p>{{productosServicios.web}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, productosServicios)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(productosServicios)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!productosServicios?.length">
+        <ion-label>
+            No Productos Servicios found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

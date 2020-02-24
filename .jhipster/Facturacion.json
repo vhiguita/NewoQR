@@ -1,0 +1,53 @@
+{
+    "name": "Facturacion",
+    "fields": [
+        {
+            "fieldName": "titularFactura",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoPersona",
+            "fieldType": "TipoPersonad",
+            "fieldValues": "NATURAL,JURIDICA"
+        },
+        {
+            "fieldName": "periodicidadFacturacion",
+            "fieldType": "PeriodicidadFacturaciond",
+            "fieldValues": "SEMANAL,QUINCENAL,MENSUAL,BIMESTRAL,TRIMESTRAL"
+        },
+        {
+            "fieldName": "maximoMonto",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "empresa",
+            "otherEntityRelationshipName": "facturacion",
+            "relationshipName": "empresa",
+            "otherEntityField": "razonSocial"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cuentaAsociada",
+            "otherEntityRelationshipName": "facturacion",
+            "relationshipName": "identificacion",
+            "otherEntityField": "identificaciontitular"
+        }
+    ],
+    "changelogDate": "20191022215055",
+    "entityTableName": "facturacion",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Eventos
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content class="ion-padding">
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let evento of eventos; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(evento)">
+              <ion-label text-wrap>
+                <p>{{evento.nombreEvento}}</p>
+                <p>{{evento.descripcion}}</p>
+                <p>{{evento.contenido}}</p>
+                <p>{{evento.audio}}</p>
+                <p>{{evento.video}}</p>
+                <ion-avatar *ngIf="evento.imagen1">
+                    <img [src]="'data:' + evento.imagen1ContentType + ';base64,' + evento.imagen1" />
+                    <p *ngIf="evento.imagen1">{{evento.imagen1ContentType}}, {{byteSize(evento.imagen1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="evento.imagen2">
+                    <img [src]="'data:' + evento.imagen2ContentType + ';base64,' + evento.imagen2" />
+                    <p *ngIf="evento.imagen2">{{evento.imagen2ContentType}}, {{byteSize(evento.imagen2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="evento.banner">
+                    <img [src]="'data:' + evento.bannerContentType + ';base64,' + evento.banner" />
+                    <p *ngIf="evento.banner">{{evento.bannerContentType}}, {{byteSize(evento.banner)}}</p>
+                </ion-avatar>
+                <!-- todo: special handling for translating enum - {{'TipoConsumod.' + evento.tipoConsumo}}" -->
+                <p>{{evento.tipoConsumo}}</p>
+                <p>{{evento.valor}}</p>
+                <!-- todo: special handling for translating enum - {{'Impuestod.' + evento.impuesto}}" -->
+                <p>{{evento.impuesto}}</p>
+                <!-- todo: special handling for translating enum - {{'Categoriad.' + evento.tipoEvento}}" -->
+                <p>{{evento.tipoEvento}}</p>
+                <p>{{evento.eventoNEWO}}</p>
+                <p>{{evento.web}}</p>
+                <p>{{evento.vistas}}</p>
+                <p>{{evento.meGusta}}</p>
+                <p>{{evento.seguidores}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, evento)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(evento)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!eventos?.length">
+        <ion-label>
+            No Eventos found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

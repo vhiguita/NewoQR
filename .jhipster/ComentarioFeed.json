@@ -1,0 +1,51 @@
+{
+    "name": "ComentarioFeed",
+    "fields": [
+        {
+            "fieldName": "comentario",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "meGusta",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "seguir",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "feed",
+            "otherEntityRelationshipName": "comentarioFeed",
+            "relationshipName": "feed",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "comentarioFeed",
+            "relationshipName": "idUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191022215111",
+    "entityTableName": "comentario_feed",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

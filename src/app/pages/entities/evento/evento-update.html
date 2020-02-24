@@ -1,0 +1,182 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Evento
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+              <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+              <ion-icon name="md-checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+    <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <ion-list>
+            <ion-item [hidden]="!form.id">
+                <ion-label>ID</ion-label>
+                <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nombre Evento</ion-label>
+                <ion-input type="text" name="nombreEvento" formControlName="nombreEvento"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Descripcion</ion-label>
+                <ion-input type="text" name="descripcion" formControlName="descripcion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-textarea placeholder="Contenido" formControlName="contenido" id="field_contenido"></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <div *ngIf="evento.audio">
+                        <p>{{evento.audioContentType}}, {{byteSize(evento.audio)}}</p>
+                        <ion-button color="danger" (click)="evento.audio=null;evento.audioContentType=null;">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, evento, 'audio', false)"/>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <div *ngIf="evento.video">
+                        <p>{{evento.videoContentType}}, {{byteSize(evento.video)}}</p>
+                        <ion-button color="danger" (click)="evento.video=null;evento.videoContentType=null;">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, evento, 'video', false)"/>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + evento.imagen1ContentType + ';base64,' + evento.imagen1" style="max-height: 100px;" *ngIf="evento?.imagen1" alt="evento image"/>
+                    <div *ngIf="evento.imagen1">
+                        <p>{{evento.imagen1ContentType}}, {{byteSize(evento.imagen1)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen1', 'imagen1ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, evento, 'imagen1', true)" accept="image/*"/>
+                    <ion-button *ngIf="!evento?.imagen1" (click)="getPicture('imagen1')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + evento.imagen2ContentType + ';base64,' + evento.imagen2" style="max-height: 100px;" *ngIf="evento?.imagen2" alt="evento image"/>
+                    <div *ngIf="evento.imagen2">
+                        <p>{{evento.imagen2ContentType}}, {{byteSize(evento.imagen2)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('imagen2', 'imagen2ContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, evento, 'imagen2', true)" accept="image/*"/>
+                    <ion-button *ngIf="!evento?.imagen2" (click)="getPicture('imagen2')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div>
+                    <img [src]="'data:' + evento.bannerContentType + ';base64,' + evento.banner" style="max-height: 100px;" *ngIf="evento?.banner" alt="evento image"/>
+                    <div *ngIf="evento.banner">
+                        <p>{{evento.bannerContentType}}, {{byteSize(evento.banner)}}</p>
+                        <ion-button color="danger" (click)="clearInputImage('banner', 'bannerContentType', 'fileImage')">
+                            <ion-icon name="trash" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </div>
+                    <input type="file" #fileInput style="display: none" (change)="setFileData($event, evento, 'banner', true)" accept="image/*"/>
+                    <ion-button *ngIf="!evento?.banner" (click)="getPicture('banner')">
+                        <ion-icon name="add-circle" slot="start"></ion-icon>
+                        {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
+                    </ion-button>
+                </div>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Consumo</ion-label>
+                <ion-select formControlName="tipoConsumo" id="field_tipoConsumo" >
+                        <ion-select-option value="GRATIS">{{'TipoConsumod.GRATIS' | translate}}</ion-select-option>
+                        <ion-select-option value="PAGO">{{'TipoConsumod.PAGO' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Valor</ion-label>
+                <ion-input type="number" name="valor" formControlName="valor"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Impuesto</ion-label>
+                <ion-select formControlName="impuesto" id="field_impuesto" >
+                        <ion-select-option value="IVA19">{{'Impuestod.IVA19' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA6">{{'Impuestod.IVA6' | translate}}</ion-select-option>
+                        <ion-select-option value="IVA0">{{'Impuestod.IVA0' | translate}}</ion-select-option>
+                        <ion-select-option value="ICO">{{'Impuestod.ICO' | translate}}</ion-select-option>
+                        <ion-select-option value="IPOCONSUMO8">{{'Impuestod.IPOCONSUMO8' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo Evento</ion-label>
+                <ion-select formControlName="tipoEvento" id="field_tipoEvento" >
+                        <ion-select-option value="GENERAL">{{'Categoriad.GENERAL' | translate}}</ion-select-option>
+                        <ion-select-option value="DE_GRUPO">{{'Categoriad.DE_GRUPO' | translate}}</ion-select-option>
+                        <ion-select-option value="CORPORATIVO">{{'Categoriad.CORPORATIVO' | translate}}</ion-select-option>
+                        <ion-select-option value="INSTITUCIONAL">{{'Categoriad.INSTITUCIONAL' | translate}}</ion-select-option>
+                        <ion-select-option value="INTERNO">{{'Categoriad.INTERNO' | translate}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Evento NEWO</ion-label>
+                <ion-checkbox formControlName="eventoNEWO"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Web</ion-label>
+                <ion-input type="text" name="web" formControlName="web"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Vistas</ion-label>
+                <ion-input type="number" name="vistas" formControlName="vistas"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Me Gusta</ion-label>
+                <ion-input type="number" name="meGusta" formControlName="meGusta"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Seguidores</ion-label>
+                <ion-input type="number" name="seguidores" formControlName="seguidores"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Categoria Evento</ion-label>
+                <ion-select id="field_categoriaEvento" formControlName="categoriaEvento" [compareWith]="compareCategoriaContenidos">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="categoriaContenidosOption" *ngFor="let categoriaContenidosOption of categoriaContenidos; trackBy: trackCategoriaContenidosById">{{categoriaContenidosOption.categoria}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Id User</ion-label>
+                <ion-select id="field_idUser" formControlName="idUser" [compareWith]="compareUser">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Grupos</ion-label>
+                <ion-select id="field_grupos" formControlName="grupos" [compareWith]="compareGrupos">
+                    <ion-select-option [value]="null"></ion-select-option>
+                    <ion-select-option [value]="gruposOption" *ngFor="let gruposOption of grupos; trackBy: trackGruposById">{{gruposOption.nombreGrupo}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

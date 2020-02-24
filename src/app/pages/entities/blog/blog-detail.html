@@ -1,0 +1,155 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Blog
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Titulo</ion-label>
+            <div item-content>
+                <span>{{blog.titulo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Descripcion</ion-label>
+            <div item-content>
+                <span>{{blog.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Contenido</ion-label>
+            <div item-content>
+                <span>{{blog.tipoContenido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Contenido</ion-label>
+            <div item-content>
+                <span>{{blog.contenido}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha</ion-label>
+            <div item-content>
+                <span>{{blog.fecha | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Audio</ion-label>
+            <div item-content>
+                <div *ngIf="blog.audio">
+                    <a (click)="openFile(blog.audioContentType, blog.audio)" jhiTranslate="entity.action.open">open</a>
+                    {{blog.audioContentType}}, {{byteSize(blog.audio)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Video</ion-label>
+            <div item-content>
+                <span>{{blog.video}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 1</ion-label>
+            <div item-content>
+                <div *ngIf="blog.imagen1">
+                    <a (click)="openFile(blog.imagen1ContentType, blog.imagen1)">
+                        <img [src]="'data:' + blog.imagen1ContentType + ';base64,' + blog.imagen1" style="max-width: 100%;" alt="blog image"/>
+                    </a>
+                    {{blog.imagen1ContentType}}, {{byteSize(blog.imagen1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Imagen 2</ion-label>
+            <div item-content>
+                <div *ngIf="blog.imagen2">
+                    <a (click)="openFile(blog.imagen2ContentType, blog.imagen2)">
+                        <img [src]="'data:' + blog.imagen2ContentType + ';base64,' + blog.imagen2" style="max-width: 100%;" alt="blog image"/>
+                    </a>
+                    {{blog.imagen2ContentType}}, {{byteSize(blog.imagen2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Banner</ion-label>
+            <div item-content>
+                <div *ngIf="blog.banner">
+                    <a (click)="openFile(blog.bannerContentType, blog.banner)">
+                        <img [src]="'data:' + blog.bannerContentType + ';base64,' + blog.banner" style="max-width: 100%;" alt="blog image"/>
+                    </a>
+                    {{blog.bannerContentType}}, {{byteSize(blog.banner)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Estado Publicacion</ion-label>
+            <div item-content>
+                <span>{{blog.estadoPublicacion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Consumo</ion-label>
+            <div item-content>
+                <span>{{blog.tipoConsumo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Valor</ion-label>
+            <div item-content>
+                <span>{{blog.valor}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Impuesto</ion-label>
+            <div item-content>
+                <span>{{blog.impuesto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Vistas</ion-label>
+            <div item-content>
+                <span>{{blog.vistas}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Me Gusta</ion-label>
+            <div item-content>
+                <span>{{blog.meGusta}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Seguidores</ion-label>
+            <div item-content>
+                <span>{{blog.seguidores}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Id User</ion-label>
+            <div item-content>{{blog.idUser?.id}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Categoria Blog</ion-label>
+            <div item-content *ngIf="blog.categoriaBlog">
+                <a>{{blog.categoriaBlog?.categoria}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Grupos</ion-label>
+            <div item-content *ngIf="blog.grupos">
+                <a>{{blog.grupos?.nombreGrupo}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(blog)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(blog)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Uso Recurso Fisico
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Registro Fecha Inicio</ion-label>
+            <div item-content>
+                <span>{{usoRecursoFisico.registroFechaInicio | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Tipo Registro</ion-label>
+            <div item-content>
+                <span>{{usoRecursoFisico.tipoRegistro}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Recurso</ion-label>
+            <div item-content *ngIf="usoRecursoFisico.recurso">
+                <a>{{usoRecursoFisico.recurso?.recurso}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>User</ion-label>
+            <div item-content>{{usoRecursoFisico.user?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(usoRecursoFisico)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(usoRecursoFisico)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>

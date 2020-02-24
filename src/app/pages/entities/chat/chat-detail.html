@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Chat
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Mensaje</ion-label>
+            <div item-content>
+                <span>{{chat.mensaje}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Sender</ion-label>
+            <div item-content>
+                <span>{{chat.sender}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Read</ion-label>
+            <div item-content>
+                <span>{{chat.read}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Delivered</ion-label>
+            <div item-content>
+                <span>{{chat.delivered}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Sent</ion-label>
+            <div item-content>
+                <span>{{chat.sent}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Fecha</ion-label>
+            <div item-content>
+                <span>{{chat.fecha | date:'medium'}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Chats Listado</ion-label>
+            <div item-content *ngIf="chat.chatsListado">
+                <a>{{chat.chatsListado?.id}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>De</ion-label>
+            <div item-content>{{chat.de?.id}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Para</ion-label>
+            <div item-content>{{chat.para?.id}}</div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(chat)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(chat)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>
